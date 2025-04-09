@@ -1,6 +1,7 @@
-import { Component, h, Prop, Element } from '@stencil/core';
+import { Component, h, Prop, Element, State } from '@stencil/core';
 import { NlTheme } from '@/types';
 import { IButton } from '@/types/button';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'button-base',
@@ -11,8 +12,22 @@ export class ButtonBase implements IButton {
   @Element() element: HTMLElement;
   @Prop({ mutable: true }) theme: NlTheme = 'default';
   @Prop({ mutable: true }) darkMode: boolean = false;
-  @Prop() titleBtn = 'Open modal';
+  @State() titleBtn = t('buttonBase.openModal');
   @Prop() disabled = false;
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.titleBtn = t('buttonBase.openModal');
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   componentDidRender() {
     const svgElement = this.element.querySelector('svg');
