@@ -14,7 +14,6 @@ export namespace Components {
         "darkMode": boolean;
         "disabled": boolean;
         "theme": NlTheme;
-        "titleBtn": string;
     }
     interface NlAuth {
         "accounts": Info[];
@@ -64,8 +63,6 @@ export namespace Components {
         "theme": 'default' | 'ocean' | 'lemonade' | 'purple';
     }
     interface NlConfirmLogout {
-        "description": string;
-        "titleModal": string;
     }
     interface NlConnect {
         "authMethods": AuthMethod[];
@@ -148,8 +145,8 @@ export namespace Components {
         "titleSignup": string;
     }
     interface NlWelcome {
-        "description": string;
-        "titleWelcome": string;
+        "description": any;
+        "titleWelcome": any;
     }
     interface NlWelcomeSignin {
         "authMethods": AuthMethod[];
@@ -669,7 +666,6 @@ declare namespace LocalJSX {
         "darkMode"?: boolean;
         "disabled"?: boolean;
         "theme"?: NlTheme;
-        "titleBtn"?: string;
     }
     interface NlAuth {
         "accounts"?: Info[];
@@ -731,11 +727,9 @@ declare namespace LocalJSX {
         "theme"?: 'default' | 'ocean' | 'lemonade' | 'purple';
     }
     interface NlConfirmLogout {
-        "description"?: string;
         "onHandleBackUpModal"?: (event: NlConfirmLogoutCustomEvent<string>) => void;
         "onHandleLogoutBanner"?: (event: NlConfirmLogoutCustomEvent<string>) => void;
         "onNlCloseModal"?: (event: NlConfirmLogoutCustomEvent<any>) => void;
-        "titleModal"?: string;
     }
     interface NlConnect {
         "authMethods"?: AuthMethod[];
@@ -845,8 +839,8 @@ declare namespace LocalJSX {
         "titleSignup"?: string;
     }
     interface NlWelcome {
-        "description"?: string;
-        "titleWelcome"?: string;
+        "description"?: any;
+        "titleWelcome"?: any;
     }
     interface NlWelcomeSignin {
         "authMethods"?: AuthMethod[];

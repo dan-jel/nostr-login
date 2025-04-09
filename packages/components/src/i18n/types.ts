@@ -1,6 +1,6 @@
 export type TranslationKeys = {
   buttonBase: {
-    openModal: string;
+    defaultTitle: string;
   };
   nlAuth: {
     logo: {

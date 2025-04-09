@@ -1,6 +1,6 @@
 {
   "buttonBase": {
-    "openModal": "Open modal"
+    "defaultTitle": "Open modal"
   },
   "nlAuth": {
     "logo": {

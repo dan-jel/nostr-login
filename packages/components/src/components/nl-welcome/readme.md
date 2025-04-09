@@ -5,10 +5,10 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type     | Default                                                                                           |
-| -------------- | --------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------- |
-| `description`  | `description`   |             | `string` | `'This website is part of the Nostr network. Log in with your Nostr profile or sign up to join.'` |
-| `titleWelcome` | `title-welcome` |             | `string` | `'Welcome to Nostr!'`                                                                             |
+| Property       | Attribute       | Description | Type  | Default                                      |
+| -------------- | --------------- | ----------- | ----- | -------------------------------------------- |
+| `description`  | `description`   |             | `any` | `t('welcome.description' as TranslationKey)` |
+| `titleWelcome` | `title-welcome` |             | `any` | `t('welcome.title' as TranslationKey)`       |
 
 
 ## Dependencies

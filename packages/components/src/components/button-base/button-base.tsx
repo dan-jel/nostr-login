@@ -12,14 +12,16 @@ export class ButtonBase implements IButton {
   @Element() element: HTMLElement;
   @Prop({ mutable: true }) theme: NlTheme = 'default';
   @Prop({ mutable: true }) darkMode: boolean = false;
-  @State() titleBtn = t('buttonBase.openModal');
+  @Prop() titleBtn = '';
   @Prop() disabled = false;
+
+  @State() defaultTitle = t('buttonBase.defaultTitle');
 
   private unsubscribeLanguageChange: () => void;
 
   connectedCallback() {
     this.unsubscribeLanguageChange = onLanguageChanged(() => {
-      this.titleBtn = t('buttonBase.openModal');
+      this.defaultTitle = t('buttonBase.defaultTitle');
     });
   }
 
@@ -48,7 +50,7 @@ export class ButtonBase implements IButton {
           class="nl-button py-2.5 px-3 w-full inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg  disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
         >
           <slot name="icon-start" />
-          {this.titleBtn}
+          {this.titleBtn || this.defaultTitle}
         </button>
       </div>
     );
