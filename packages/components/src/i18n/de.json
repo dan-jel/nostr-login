@@ -1,0 +1,32 @@
+{
+  "welcome": {
+    "title": "Willkommen bei Nostr Login",
+    "description": "Wählen Sie Ihre bevorzugte Anmeldemethode",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren",
+    "advanced": "Erweiterte Optionen"
+  },
+  "login": {
+    "title": "Anmeldung",
+    "npub": "Geben Sie Ihren npub oder nip05 ein",
+    "connect": "Mit Nostr Connect verbinden",
+    "extension": "Mit Erweiterung anmelden",
+    "readOnly": "Nur-Lesen Anmeldung",
+    "otp": "Mit DM anmelden"
+  },
+  "signup": {
+    "title": "Konto erstellen",
+    "description": "Wählen Sie, wie Sie Ihr Konto erstellen möchten",
+    "local": "Lokales Konto erstellen",
+    "bunker": "Nostr Connect verwenden",
+    "extension": "Erweiterung verwenden"
+  },
+  "common": {
+    "cancel": "Abbrechen",
+    "confirm": "Bestätigen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "error": "Ein Fehler ist aufgetreten",
+    "success": "Erfolg"
+  }
+} 
