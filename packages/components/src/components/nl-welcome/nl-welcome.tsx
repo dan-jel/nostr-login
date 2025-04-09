@@ -1,7 +1,8 @@
-import { Component, Fragment, h, Prop, State } from '@stencil/core';
+import { Component, Fragment, h, Prop } from '@stencil/core';
 import { CURRENT_MODULE } from '@/types';
 import { state } from '@/store';
-import { t, setLanguage, getLanguage } from '@/i18n/translations';
+import { t, onLanguageChanged } from '@/i18n/config';
+import { TranslationKey } from '@/i18n/types';
 
 @Component({
   tag: 'nl-welcome',
@@ -9,24 +10,25 @@ import { t, setLanguage, getLanguage } from '@/i18n/translations';
   shadow: false,
 })
 export class NlWelcome {
-  @Prop() titleWelcome = t('welcome.title');
-  @Prop() description = t('welcome.description');
-  @State() currentLang = getLanguage();
+  @Prop() titleWelcome = t('welcome.title' as TranslationKey);
+  @Prop() description = t('welcome.description' as TranslationKey);
+
+  private unsubscribe: (() => void) | undefined;
 
   componentWillLoad() {
-    // Listen for language changes
-    document.addEventListener('languageChanged', this.handleLanguageChange);
+    // Subscribe to language changes
+    this.unsubscribe = onLanguageChanged(() => {
+      this.titleWelcome = t('welcome.title' as TranslationKey);
+      this.description = t('welcome.description' as TranslationKey);
+    });
   }
 
   disconnectedCallback() {
-    document.removeEventListener('languageChanged', this.handleLanguageChange);
+    // Clean up subscription
+    if (this.unsubscribe) {
+      this.unsubscribe();
+    }
   }
-
-  handleLanguageChange = (event: CustomEvent) => {
-    this.currentLang = event.detail;
-    this.titleWelcome = t('welcome.title');
-    this.description = t('welcome.description');
-  };
 
   handleChangeScreen(screen) {
     state.path = [...state.path, screen];
@@ -42,7 +44,7 @@ export class NlWelcome {
 
         <div class="max-w-52 mx-auto pb-5">
           <div class="flex gap-3 flex-col mb-2">
-            <button-base titleBtn={t('welcome.signIn')} onClick={() => this.handleChangeScreen(CURRENT_MODULE.WELCOME_LOGIN)}>
+            <button-base titleBtn={t('welcome.signIn' as TranslationKey)} onClick={() => this.handleChangeScreen(CURRENT_MODULE.WELCOME_LOGIN)}>
               <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path
                   stroke-linecap="round"
@@ -55,7 +57,7 @@ export class NlWelcome {
 
           {/* <div class="nl-divider py-3 flex items-center text-xs uppercase before:flex-[1_1_0%] before:border-t before:me-6 after:flex-[1_1_0%] after:border-t  after:ms-6">Or</div> */}
 
-          <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.WELCOME_SIGNUP)} titleBtn={t('welcome.signUp')}>
+          <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.WELCOME_SIGNUP)} titleBtn={t('welcome.signUp' as TranslationKey)}>
             <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path
                 stroke-linecap="round"
