@@ -26,6 +26,26 @@ export type TranslationKeys = {
       };
     };
   };
+  nlBanner: {
+    logo: {
+      nostr: string;
+      login: string;
+    };
+    buttons: {
+      close: string;
+      confirm: string;
+      backupProfile: string;
+      login: string;
+      signup: string;
+      logout: string;
+    };
+    messages: {
+      timeout: string;
+      confirmation: string;
+      goTo: string;
+      profileWarning: string;
+    };
+  };
 };
 
 export type TranslationKey = keyof TranslationKeys | `${keyof TranslationKeys}.${string}`; 

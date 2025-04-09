@@ -25,5 +25,25 @@
         "suffix": "."
       }
     }
+  },
+  "nlBanner": {
+    "logo": {
+      "nostr": "Nostr",
+      "login": "Login"
+    },
+    "buttons": {
+      "close": "Close",
+      "confirm": "Confirm",
+      "backupProfile": "Back up profile",
+      "login": "Log in",
+      "signup": "Sign up",
+      "logout": "Log out"
+    },
+    "messages": {
+      "timeout": "Keys not responding, check your key storage app",
+      "confirmation": "Confirmation required at {{domain}}",
+      "goTo": "Go to {{domain}}",
+      "profileWarning": "Your profile may be lost if you close this tab"
+    }
   }
 } 
