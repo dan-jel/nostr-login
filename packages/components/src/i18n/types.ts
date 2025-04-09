@@ -49,6 +49,10 @@ export type TranslationKeys = {
   nlButton: {
     defaultTitle: string;
   };
+  nlChangeAccount: {
+    switchProfile: string;
+    addProfile: string;
+  };
 };
 
 export type TranslationKey = keyof TranslationKeys | `${keyof TranslationKeys}.${string}`; 
