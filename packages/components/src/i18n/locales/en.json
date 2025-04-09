@@ -45,5 +45,8 @@
       "goTo": "Go to {{domain}}",
       "profileWarning": "Your profile may be lost if you close this tab"
     }
+  },
+  "nlButton": {
+    "defaultTitle": "Open modal"
   }
 } 

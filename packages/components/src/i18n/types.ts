@@ -46,6 +46,9 @@ export type TranslationKeys = {
       profileWarning: string;
     };
   };
+  nlButton: {
+    defaultTitle: string;
+  };
 };
 
 export type TranslationKey = keyof TranslationKeys | `${keyof TranslationKeys}.${string}`; 
