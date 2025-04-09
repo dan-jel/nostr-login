@@ -1,5 +1,29 @@
 {
   "buttonBase": {
     "openModal": "Open modal"
+  },
+  "nlAuth": {
+    "logo": {
+      "nostr": "Nostr",
+      "login": "Login"
+    },
+    "buttons": {
+      "changeTheme": "Change theme",
+      "info": "Info",
+      "close": "Close",
+      "back": "Back"
+    },
+    "footer": {
+      "existingProfile": {
+        "prefix": "If you already have a profile please",
+        "link": "log in",
+        "suffix": "."
+      },
+      "noProfile": {
+        "prefix": "If you don't have a profile please",
+        "link": "sign up",
+        "suffix": "."
+      }
+    }
   }
 } 

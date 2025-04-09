@@ -1,6 +1,7 @@
-import { Component, Event, EventEmitter, Fragment, h, Prop, Watch } from '@stencil/core';
+import { Component, Event, EventEmitter, Fragment, h, Prop, Watch, State } from '@stencil/core';
 import { AuthMethod, ConnectionString, CURRENT_MODULE, Info, NlTheme, RecentType } from '@/types';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-auth',
@@ -30,6 +31,33 @@ export class NlAuth {
   @Prop() welcomeDescription: string = '';
   @Prop() connectionString: string = '';
   @Prop() connectionStringServices: ConnectionString[] = [];
+
+  @State() translations = {
+    logo: {
+      nostr: t('nlAuth.logo.nostr'),
+      login: t('nlAuth.logo.login')
+    },
+    buttons: {
+      changeTheme: t('nlAuth.buttons.changeTheme'),
+      info: t('nlAuth.buttons.info'),
+      close: t('nlAuth.buttons.close'),
+      back: t('nlAuth.buttons.back')
+    },
+    footer: {
+      existingProfile: {
+        prefix: t('nlAuth.footer.existingProfile.prefix'),
+        link: t('nlAuth.footer.existingProfile.link'),
+        suffix: t('nlAuth.footer.existingProfile.suffix')
+      },
+      noProfile: {
+        prefix: t('nlAuth.footer.noProfile.prefix'),
+        link: t('nlAuth.footer.noProfile.link'),
+        suffix: t('nlAuth.footer.noProfile.suffix')
+      }
+    }
+  };
+
+  private unsubscribeLanguageChange: () => void;
 
   @Event() nlCloseModal: EventEmitter;
   @Event() nlChangeDarkMode: EventEmitter<boolean>;
@@ -70,6 +98,41 @@ export class NlAuth {
   @Watch('error')
   watchErrorHandler(newValue: string) {
     state.error = newValue;
+  }
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        logo: {
+          nostr: t('nlAuth.logo.nostr'),
+          login: t('nlAuth.logo.login')
+        },
+        buttons: {
+          changeTheme: t('nlAuth.buttons.changeTheme'),
+          info: t('nlAuth.buttons.info'),
+          close: t('nlAuth.buttons.close'),
+          back: t('nlAuth.buttons.back')
+        },
+        footer: {
+          existingProfile: {
+            prefix: t('nlAuth.footer.existingProfile.prefix'),
+            link: t('nlAuth.footer.existingProfile.link'),
+            suffix: t('nlAuth.footer.existingProfile.suffix')
+          },
+          noProfile: {
+            prefix: t('nlAuth.footer.noProfile.prefix'),
+            link: t('nlAuth.footer.noProfile.link'),
+            suffix: t('nlAuth.footer.noProfile.suffix')
+          }
+        }
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
   }
 
   handleClose() {
@@ -201,7 +264,7 @@ export class NlAuth {
                   />
                 </svg>
                 <p class="font-bold nl-logo text-base">
-                  Nostr <span class="font-light">Login</span>
+                  {this.translations.logo.nostr} <span class="font-light">{this.translations.logo.login}</span>
                 </p>
               </div>
 
@@ -211,7 +274,7 @@ export class NlAuth {
                   type="button"
                   class="nl-action-button flex justify-center items-center w-7 h-7 text-sm font-semibold rounded-full border border-transparent"
                 >
-                  <span class="sr-only">Change theme</span>
+                  <span class="sr-only">{this.translations.buttons.changeTheme}</span>
                   {this.darkMode ? (
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="flex-shrink-0 w-5 h-5">
                       <path
@@ -236,7 +299,7 @@ export class NlAuth {
                     type="button"
                     class="nl-action-button flex justify-center items-center w-7 h-7 text-sm font-semibold rounded-full border border-transparent"
                   >
-                    <span class="sr-only">Info</span>
+                    <span class="sr-only">{this.translations.buttons.info}</span>
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="flex-shrink-0 w-5 h-5">
                       <path
                         stroke-linecap="round"
@@ -251,7 +314,7 @@ export class NlAuth {
                   type="button"
                   class="nl-action-button flex justify-center items-center w-7 h-7 text-sm font-semibold rounded-full border border-transparent"
                 >
-                  <span class="sr-only">Close</span>
+                  <span class="sr-only">{this.translations.buttons.close}</span>
                   <svg
                     class="flex-shrink-0 w-5 h-5"
                     xmlns="http://www.w3.org/2000/svg"
@@ -278,7 +341,7 @@ export class NlAuth {
                   class="nl-action-button flex justify-center items-center w-7 h-7 text-sm font-semibold rounded-full border border-transparent  dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                   data-hs-overlay="#hs-vertically-centered-modal"
                 >
-                  <span class="sr-only">Back</span>
+                  <span class="sr-only">{this.translations.buttons.back}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="flex-shrink-0 w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
                   </svg>
@@ -295,27 +358,27 @@ export class NlAuth {
                     {currentModule === CURRENT_MODULE.WELCOME_SIGNUP || currentModule === CURRENT_MODULE.SIGNUP || currentModule === CURRENT_MODULE.LOCAL_SIGNUP ? (
                       <div class="p-4 overflow-y-auto">
                         <p class="nl-footer font-light text-center text-sm pt-3 max-w-96 mx-auto">
-                          If you already have a profile please{' '}
+                          {this.translations.footer.existingProfile.prefix}{' '}
                           <span onClick={() => this.switchSignSignUpStrategy(CURRENT_MODULE.WELCOME_LOGIN)} class="cursor-pointer text-blue-400">
-                            log in
+                            {this.translations.footer.existingProfile.link}
                           </span>
-                          .
+                          {this.translations.footer.existingProfile.suffix}
                         </p>
                       </div>
                     ) : (
                       showSignup && (
                         <div class="p-4 overflow-y-auto">
                           <p class="nl-footer font-light text-center text-sm pt-3 max-w-96 mx-auto">
-                            If you don't have a profile please{' '}
+                            {this.translations.footer.noProfile.prefix}{' '}
                             <span
                               onClick={() =>
                                 this.localSignup ? this.switchSignSignUpStrategy(CURRENT_MODULE.LOCAL_SIGNUP) : this.switchSignSignUpStrategy(CURRENT_MODULE.WELCOME_SIGNUP)
                               }
                               class="cursor-pointer text-blue-400"
                             >
-                              sign up
+                              {this.translations.footer.noProfile.link}
                             </span>
-                            .
+                            {this.translations.footer.noProfile.suffix}
                           </p>
                         </div>
                       )
