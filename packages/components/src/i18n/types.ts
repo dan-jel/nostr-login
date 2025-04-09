@@ -53,6 +53,12 @@ export type TranslationKeys = {
     switchProfile: string;
     addProfile: string;
   };
+  nlConfirmLogout: {
+    title: string;
+    description: string;
+    cancel: string;
+    confirm: string;
+  };
 };
 
 export type TranslationKey = keyof TranslationKeys | `${keyof TranslationKeys}.${string}`; 

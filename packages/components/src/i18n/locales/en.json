@@ -48,5 +48,15 @@
   },
   "nlButton": {
     "defaultTitle": "Open modal"
+  },
+  "nlChangeAccount": {
+    "switchProfile": "Switch profile",
+    "addProfile": "Add profile"
+  },
+  "nlConfirmLogout": {
+    "title": "Logout",
+    "description": "Are you sure you want to log out?",
+    "cancel": "Cancel",
+    "confirm": "Logout"
   }
 } 
