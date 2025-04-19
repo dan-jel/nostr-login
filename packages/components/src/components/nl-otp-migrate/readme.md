@@ -7,12 +7,9 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                 | Default                                                                                                    |
-| ------------- | -------------- | ----------- | -------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `services`    | --             |             | `ConnectionString[]` | `[]`                                                                                                       |
-| `textImport`  | `text-import`  |             | `string`             | `'You will be prompted to import keys to the chosen service, and this website will connect to your keys.'` |
-| `titleImport` | `title-import` |             | `string`             | `'Choose a service'`                                                                                       |
-| `titleInfo`   | `title-info`   |             | `string`             | `'Import keys to storage service'`                                                                         |
+| Property   | Attribute  | Description | Type                 | Default |
+| ---------- | ---------- | ----------- | -------------------- | ------- |
+| `services` | --         |             | `ConnectionString[]` | `[]`    |
 
 
 ## Events

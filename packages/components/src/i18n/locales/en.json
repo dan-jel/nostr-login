@@ -157,5 +157,12 @@
     "connect": "Connect",
     "local": "Temporary",
     "otp": "Delegated"
+  },
+  "nlOtpMigrate": {
+    "titleInfo": "Import keys to storage service",
+    "titleImport": "Choose a service",
+    "textImport": "You will be prompted to import keys to the chosen service, and this website will connect to your keys.",
+    "defaultProvider": "Default provider is a fine choice to start with.",
+    "startImporting": "Start importing"
   }
 } 
