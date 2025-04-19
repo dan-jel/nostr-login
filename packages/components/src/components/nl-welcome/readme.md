@@ -2,6 +2,13 @@
 
 <!-- Auto Generated Below -->
 
+## Properties
+
+| Property       | Attribute       | Description | Type     | Default     |
+| -------------- | --------------- | ----------- | -------- | ----------- |
+| `description`  | `description`   |             | `string` | `undefined` |
+| `titleWelcome` | `title-welcome` |             | `string` | `undefined` |
+
 ## Dependencies
 
 ### Used by
