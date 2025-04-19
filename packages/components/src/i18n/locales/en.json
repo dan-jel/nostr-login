@@ -99,5 +99,16 @@
       "description": "Your Nostr keys will be imported into the service you choose. You will manage your keys on their website.",
       "defaultProvider": "Default provider is a fine choice to start with."
     }
+  },
+  "nlInfo": {
+    "title": {
+      "nostr": "Nostr",
+      "login": "Login"
+    },
+    "version": "Version: {{version}}",
+    "description": {
+      "learnMore": "Learn more about Nostr <a>here</a>.",
+      "openSource": "This is an <a>open-source</a> tool by <a>Nostr.Band</a>."
+    }
   }
 } 

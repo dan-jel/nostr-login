@@ -1,4 +1,5 @@
-import { Component, h } from '@stencil/core';
+import { Component, h, State } from '@stencil/core';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-info',
@@ -6,6 +7,59 @@ import { Component, h } from '@stencil/core';
   shadow: false,
 })
 export class NlInfo {
+  @State() translations = {
+    title: {
+      nostr: t('nlInfo.title.nostr'),
+      login: t('nlInfo.title.login')
+    },
+    version: t('nlInfo.version', { version: '1.7.11' }),
+    description: {
+      learnMore: t('nlInfo.description.learnMore'),
+      openSource: t('nlInfo.description.openSource')
+    }
+  };
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        title: {
+          nostr: t('nlInfo.title.nostr'),
+          login: t('nlInfo.title.login')
+        },
+        version: t('nlInfo.version', { version: '1.7.11' }),
+        description: {
+          learnMore: t('nlInfo.description.learnMore'),
+          openSource: t('nlInfo.description.openSource')
+        }
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
+
+  private renderTextWithLinks(text: string, urls: string[]) {
+    const parts = text.split(/(<a>.*?<\/a>)/);
+    let urlIndex = 0;
+    
+    return parts.map((part) => {
+      if (part.startsWith('<a>') && part.endsWith('</a>')) {
+        const linkText = part.slice(3, -4);
+        return (
+          <a target="_blank" href={urls[urlIndex++]}>
+            {linkText}
+          </a>
+        );
+      }
+      return part;
+    });
+  }
+
   render() {
     return (
       <div class="p-4 overflow-y-auto">
@@ -17,24 +71,16 @@ export class NlInfo {
           />
         </svg>
         <h1 class="nl-title font-bold text-center text-4xl">
-          Nostr <span class="font-light">Login</span>
+          {this.translations.title.nostr} <span class="font-light">{this.translations.title.login}</span>
         </h1>
-        <p class="text-green-800 dark:text-green-200 font-light text-center text-lg pt-2 max-w-96 mx-auto">Version: 1.7.11</p>
+        <p class="text-green-800 dark:text-green-200 font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.translations.version}</p>
         <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">
-          Learn more about Nostr{' '}
-          <a target="_blank" href="https://nostr.how">
-            here
-          </a>
-          .<br />
-          This is an{' '}
-          <a target="_blank" href="https://github.com/nostrband/nostr-login">
-            open-source
-          </a>{' '}
-          tool by{' '}
-          <a target="_blank" href="https://nostr.band">
-            Nostr.Band
-          </a>
-          .
+          {this.renderTextWithLinks(this.translations.description.learnMore, ['https://nostr.how'])}
+          <br />
+          {this.renderTextWithLinks(this.translations.description.openSource, [
+            'https://github.com/nostrband/nostr-login',
+            'https://nostr.band'
+          ])}
         </p>
       </div>
     );
