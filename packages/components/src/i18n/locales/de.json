@@ -160,14 +160,14 @@
   },
   "nlOtpMigrate": {
     "titleInfo": "Schlüssel in Speicherdienst importieren",
-    "titleImport": "Wählen Sie einen Dienst",
-    "textImport": "Sie werden aufgefordert, Schlüssel in den gewählten Dienst zu importieren, und diese Website wird sich mit Ihren Schlüsseln verbinden.",
+    "titleImport": "Dienst auswählen",
+    "textImport": "Sie werden aufgefordert, die Schlüssel in den gewählten Dienst zu importieren, und diese Website wird sich mit Ihren Schlüsseln verbinden.",
     "defaultProvider": "Der Standardanbieter ist eine gute Wahl für den Anfang.",
     "startImporting": "Import starten"
   },
   "nlPreviouslyLogged": {
     "title": "Ihre Profile",
-    "description": "Wechseln Sie zwischen aktiven Profilen oder wählen Sie ein kürzlich verwendetes für schnelle Anmeldung.",
+    "description": "Wechseln Sie zwischen aktiven Profilen oder wählen Sie ein kürzlich verwendetes für schnelles Anmelden.",
     "activeProfiles": "Aktive Profile",
     "recentProfiles": "Kürzlich verwendete Profile",
     "addAnotherProfile": "ein weiteres Profil hinzufügen"
@@ -182,7 +182,7 @@
   },
   "nlSigninBunkerUrl": {
     "titleLogin": "Mit Bunker-URL verbinden",
-    "description": "Bitte geben Sie eine vom Schlüsselspeicher bereitgestellte Bunker-URL ein.",
+    "description": "Bitte geben Sie eine Bunker-URL ein, die vom Schlüsselspeicher bereitgestellt wurde.",
     "placeholder": "bunker://...",
     "button": {
       "connect": "Verbinden"
@@ -195,7 +195,7 @@
   },
   "nlSigninOtp": {
     "titleLogin": "Mit DM anmelden",
-    "description": "Bitte geben Sie Ihren Benutzernamen oder npub ein, und wir senden Ihnen einen Einmalcode per Direktnachricht.",
+    "description": "Bitte geben Sie Ihren Benutzernamen oder npub ein, und wir senden Ihnen eine Direktnachricht mit einem Einmalcode.",
     "titleLoginOTP": "Code eingeben",
     "descriptionOTP": "Bitte geben Sie den Einmalcode ein, den wir Ihnen als Direktnachricht auf Nostr gesendet haben.",
     "placeholder": {

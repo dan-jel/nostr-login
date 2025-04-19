@@ -63,6 +63,7 @@ export namespace Components {
     darkMode: boolean;
     theme: 'default' | 'ocean' | 'lemonade' | 'purple';
   }
+  interface NlChangeLanguage {}
   interface NlConfirmLogout {}
   interface NlConnect {
     authMethods: AuthMethod[];
@@ -132,6 +133,10 @@ export interface NlBannerCustomEvent<T> extends CustomEvent<T> {
 export interface NlChangeAccountCustomEvent<T> extends CustomEvent<T> {
   detail: T;
   target: HTMLNlChangeAccountElement;
+}
+export interface NlChangeLanguageCustomEvent<T> extends CustomEvent<T> {
+  detail: T;
+  target: HTMLNlChangeLanguageElement;
 }
 export interface NlConfirmLogoutCustomEvent<T> extends CustomEvent<T> {
   detail: T;
@@ -315,6 +320,39 @@ declare global {
   var HTMLNlChangeAccountElement: {
     prototype: HTMLNlChangeAccountElement;
     new (): HTMLNlChangeAccountElement;
+  };
+  interface HTMLNlChangeLanguageElementEventMap {
+    handleLanguageChange: string;
+  }
+  interface HTMLNlChangeLanguageElement extends Components.NlChangeLanguage, HTMLStencilElement {
+    addEventListener<K extends keyof HTMLNlChangeLanguageElementEventMap>(
+      type: K,
+      listener: (this: HTMLNlChangeLanguageElement, ev: NlChangeLanguageCustomEvent<HTMLNlChangeLanguageElementEventMap[K]>) => any,
+      options?: boolean | AddEventListenerOptions,
+    ): void;
+    addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+    addEventListener<K extends keyof HTMLElementEventMap>(
+      type: K,
+      listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any,
+      options?: boolean | AddEventListenerOptions,
+    ): void;
+    addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+    removeEventListener<K extends keyof HTMLNlChangeLanguageElementEventMap>(
+      type: K,
+      listener: (this: HTMLNlChangeLanguageElement, ev: NlChangeLanguageCustomEvent<HTMLNlChangeLanguageElementEventMap[K]>) => any,
+      options?: boolean | EventListenerOptions,
+    ): void;
+    removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+    removeEventListener<K extends keyof HTMLElementEventMap>(
+      type: K,
+      listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any,
+      options?: boolean | EventListenerOptions,
+    ): void;
+    removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+  }
+  var HTMLNlChangeLanguageElement: {
+    prototype: HTMLNlChangeLanguageElement;
+    new (): HTMLNlChangeLanguageElement;
   };
   interface HTMLNlConfirmLogoutElementEventMap {
     handleLogoutBanner: string;
@@ -895,6 +933,7 @@ declare global {
     'nl-banner': HTMLNlBannerElement;
     'nl-button': HTMLNlButtonElement;
     'nl-change-account': HTMLNlChangeAccountElement;
+    'nl-change-language': HTMLNlChangeLanguageElement;
     'nl-confirm-logout': HTMLNlConfirmLogoutElement;
     'nl-connect': HTMLNlConnectElement;
     'nl-dialog': HTMLNlDialogElement;
@@ -984,6 +1023,9 @@ declare namespace LocalJSX {
     onHandleOpenWelcomeModal?: (event: NlChangeAccountCustomEvent<string>) => void;
     onHandleSwitchAccount?: (event: NlChangeAccountCustomEvent<Info>) => void;
     theme?: 'default' | 'ocean' | 'lemonade' | 'purple';
+  }
+  interface NlChangeLanguage {
+    onHandleLanguageChange?: (event: NlChangeLanguageCustomEvent<string>) => void;
   }
   interface NlConfirmLogout {
     onHandleBackUpModal?: (event: NlConfirmLogoutCustomEvent<string>) => void;
@@ -1084,6 +1126,7 @@ declare namespace LocalJSX {
     'nl-banner': NlBanner;
     'nl-button': NlButton;
     'nl-change-account': NlChangeAccount;
+    'nl-change-language': NlChangeLanguage;
     'nl-confirm-logout': NlConfirmLogout;
     'nl-connect': NlConnect;
     'nl-dialog': NlDialog;
@@ -1117,6 +1160,7 @@ declare module '@stencil/core' {
       'nl-banner': LocalJSX.NlBanner & JSXBase.HTMLAttributes<HTMLNlBannerElement>;
       'nl-button': LocalJSX.NlButton & JSXBase.HTMLAttributes<HTMLNlButtonElement>;
       'nl-change-account': LocalJSX.NlChangeAccount & JSXBase.HTMLAttributes<HTMLNlChangeAccountElement>;
+      'nl-change-language': LocalJSX.NlChangeLanguage & JSXBase.HTMLAttributes<HTMLNlChangeLanguageElement>;
       'nl-confirm-logout': LocalJSX.NlConfirmLogout & JSXBase.HTMLAttributes<HTMLNlConfirmLogoutElement>;
       'nl-connect': LocalJSX.NlConnect & JSXBase.HTMLAttributes<HTMLNlConnectElement>;
       'nl-dialog': LocalJSX.NlDialog & JSXBase.HTMLAttributes<HTMLNlDialogElement>;

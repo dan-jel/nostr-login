@@ -293,6 +293,7 @@ export class NlAuth {
                     </svg>
                   )}
                 </button>
+                <nl-change-language />
                 {!state.isLoading && (
                   <button
                     onClick={() => (state.path = [...state.path, CURRENT_MODULE.INFO])}

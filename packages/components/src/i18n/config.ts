@@ -17,6 +17,10 @@ i18next.use(LanguageDetector).init({
   detection: {
     order: ['navigator', 'htmlTag'],
     caches: ['localStorage'],
+    convertDetectedLanguage: (lng: string) => {
+      if (lng.startsWith('en')) return 'en';
+      return lng;
+    },
   },
 });
 
