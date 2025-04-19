@@ -110,5 +110,13 @@
       "learnMore": "Learn more about Nostr <a>here</a>.",
       "openSource": "This is an <a>open-source</a> tool by <a>Nostr.Band</a>."
     }
+  },
+  "nlInfoExtension": {
+    "signingIn": "Signing in...",
+    "loading": "loading",
+    "installExtension": {
+      "title": "Install browser extension!",
+      "description": "Try <a>Alby</a>, <a>nos2x</a> or <a>Nostore</a>"
+    }
   }
 } 
