@@ -150,5 +150,12 @@
       "getStarted": "Get started",
       "createProfile": "Create profile"
     }
+  },
+  "nlLoginStatus": {
+    "extension": "Extension",
+    "readOnly": "Read only",
+    "connect": "Connect",
+    "local": "Temporary",
+    "otp": "Delegated"
   }
 } 
