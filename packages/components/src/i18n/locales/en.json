@@ -171,5 +171,13 @@
     "activeProfiles": "Active profiles",
     "recentProfiles": "Recent profiles",
     "addAnotherProfile": "add another profile"
+  },
+  "nlSignin": {
+    "titleLogin": "Connect to key store",
+    "description": "Please enter your user name.",
+    "placeholder": "name@domain.com",
+    "button": {
+      "connect": "Connect"
+    }
   }
 } 

@@ -1,5 +1,6 @@
 import { Component, h, State, Prop, Fragment, Event, EventEmitter } from '@stencil/core';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-signin',
@@ -7,12 +8,40 @@ import { state } from '@/store';
   shadow: false,
 })
 export class NlSignin {
-  @Prop() titleLogin = 'Connect to key store';
-  @Prop() description = 'Please enter your user name.';
+  @State() translations = {
+    titleLogin: t('nlSignin.titleLogin'),
+    description: t('nlSignin.description'),
+    placeholder: t('nlSignin.placeholder'),
+    button: {
+      connect: t('nlSignin.button.connect')
+    }
+  };
+
   @State() isGood = false;
 
   @Event() nlLogin: EventEmitter<string>;
   @Event() nlCheckLogin: EventEmitter<string>;
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleLogin: t('nlSignin.titleLogin'),
+        description: t('nlSignin.description'),
+        placeholder: t('nlSignin.placeholder'),
+        button: {
+          connect: t('nlSignin.button.connect')
+        }
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   handleInputChange(event: Event) {
     state.nlSignin.loginName = (event.target as HTMLInputElement).value;
@@ -21,7 +50,6 @@ export class NlSignin {
 
   handleLogin(e: MouseEvent) {
     e.preventDefault();
-
     this.nlLogin.emit(state.nlSignin.loginName);
   }
 
@@ -29,8 +57,8 @@ export class NlSignin {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">{this.titleLogin}</h1>
-          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.description}</p>
+          <h1 class="nl-title font-bold text-center text-2xl">{this.translations.titleLogin}</h1>
+          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.translations.description}</p>
         </div>
 
         <div class="max-w-72 mx-auto">
@@ -39,7 +67,7 @@ export class NlSignin {
               onInput={e => this.handleInputChange(e)}
               type="text"
               class="nl-input peer py-3 px-4 ps-11 block w-full border-transparent rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:border-transparent"
-              placeholder="name@domain.com"
+              placeholder={this.translations.placeholder}
               value={state.nlSignin.loginName}
             />
             <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
@@ -71,7 +99,7 @@ export class NlSignin {
             <p class="nl-error font-light text-center text-sm max-w-96 mx-auto">{state.error}</p>
           </div>
 
-          <button-base titleBtn="Connect" disabled={state.isLoading} onClick={e => this.handleLogin(e)}>
+          <button-base titleBtn={this.translations.button.connect} disabled={state.isLoading} onClick={e => this.handleLogin(e)}>
             {state.isLoading ? (
               <span
                 slot="icon-start"
@@ -81,13 +109,13 @@ export class NlSignin {
               ></span>
             ) : (
               <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
-              />
-            </svg>
-        )}
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15M12 9l3 3m0 0-3 3m3-3H2.25"
+                />
+              </svg>
+            )}
           </button-base>
         </div>
       </Fragment>
