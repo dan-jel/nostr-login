@@ -66,5 +66,9 @@
     "userName": "User name",
     "connectionString": "Connection string",
     "bunkerUrl": "Bunker URL"
+  },
+  "nlIframe": {
+    "titleModal": "Confirm",
+    "description": "Your profile keys are stored in this browser tab and will be deleted if you log out, and your profile will be inaccessible."
   }
 } 

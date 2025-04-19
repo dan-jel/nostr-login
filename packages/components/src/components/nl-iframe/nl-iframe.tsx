@@ -1,4 +1,5 @@
-import { Component, Event, EventEmitter, Prop, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, h, State } from '@stencil/core';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-iframe',
@@ -6,10 +7,30 @@ import { Component, Event, EventEmitter, Prop, h } from '@stencil/core';
   shadow: false,
 })
 export class NlConfirmLogout {
-  @Prop() titleModal = 'Confirm';
-  @Prop() description = 'Your profile keys are stored in this browser tab and will be deleted if you log out, and your profile will be inaccessible.';
   @Prop() iframeUrl = '';
   @Event() nlCloseModal: EventEmitter;
+
+  @State() translations = {
+    titleModal: t('nlIframe.titleModal'),
+    description: t('nlIframe.description')
+  };
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleModal: t('nlIframe.titleModal'),
+        description: t('nlIframe.description')
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   handleCancel() {
     this.nlCloseModal.emit();
@@ -18,8 +39,8 @@ export class NlConfirmLogout {
   render() {
     return (
       <div class="p-4 overflow-y-auto">
-        {/* <h1 class="nl-title font-bold text-center text-4xl">{this.titleModal}</h1>
-        <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.description}</p> */}
+        <h1 class="nl-title font-bold text-center text-4xl">{this.translations.titleModal}</h1>
+        <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.translations.description}</p>
 
         <div class="mt-3 flex flex-col gap-2">
           {this.iframeUrl && (
