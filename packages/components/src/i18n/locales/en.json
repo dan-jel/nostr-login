@@ -70,5 +70,34 @@
   "nlIframe": {
     "titleModal": "Confirm",
     "description": "Your profile keys are stored in this browser tab and will be deleted if you log out, and your profile will be inaccessible."
+  },
+  "nlImportFlow": {
+    "titleInfo": "Back up your keys",
+    "titleImport": "Choose a service",
+    "description": {
+      "intro": "Nostr profiles are controlled by cryptographic keys.",
+      "warning": "Your keys are currently only stored in this browser tab, and may be lost if you close it.",
+      "backup": "You should backup your keys.",
+      "recommendation": "We recommend to import your keys into a key store service, to protect them and to use with other apps."
+    },
+    "buttons": {
+      "importToKeyStore": "Import to key store",
+      "exportKeys": "Export keys",
+      "copyToClipboard": "Copy to clipboard",
+      "copied": "Copied!",
+      "startImporting": "Start importing"
+    },
+    "keyExport": {
+      "title": "Key export",
+      "description": {
+        "copy": "Copy your keys and store them in a safe place, like a password manager.",
+        "signIn": "You can sign into other Nostr apps by pasting your keys into them.",
+        "warning": "Your keys must be kept secret, never share them with anyone."
+      }
+    },
+    "serviceSelection": {
+      "description": "Your Nostr keys will be imported into the service you choose. You will manage your keys on their website.",
+      "defaultProvider": "Default provider is a fine choice to start with."
+    }
   }
 } 

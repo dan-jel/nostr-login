@@ -1,6 +1,7 @@
 import { Component, h, Fragment, State, Prop, Event, EventEmitter } from '@stencil/core';
 import { state } from '@/store';
 import { ConnectionString } from '@/types';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-import-flow',
@@ -8,17 +9,86 @@ import { ConnectionString } from '@/types';
   shadow: false,
 })
 export class NlImportFlow {
-  @Prop({ mutable: true }) titleInfo = 'Back up your keys';
-  @Prop() titleImport = 'Choose a service';
   @Prop() services: ConnectionString[] = [];
 
   @State() isContinued = false;
   @State() isKeyBackup = false;
-
   @State() isCopy = false;
 
   @Event() nlImportAccount: EventEmitter<ConnectionString>;
   @Event() nlExportKeys: EventEmitter<void>;
+
+  @State() translations = {
+    titleInfo: t('nlImportFlow.titleInfo'),
+    titleImport: t('nlImportFlow.titleImport'),
+    description: {
+      intro: t('nlImportFlow.description.intro'),
+      warning: t('nlImportFlow.description.warning'),
+      backup: t('nlImportFlow.description.backup'),
+      recommendation: t('nlImportFlow.description.recommendation')
+    },
+    buttons: {
+      importToKeyStore: t('nlImportFlow.buttons.importToKeyStore'),
+      exportKeys: t('nlImportFlow.buttons.exportKeys'),
+      copyToClipboard: t('nlImportFlow.buttons.copyToClipboard'),
+      copied: t('nlImportFlow.buttons.copied'),
+      startImporting: t('nlImportFlow.buttons.startImporting')
+    },
+    keyExport: {
+      title: t('nlImportFlow.keyExport.title'),
+      description: {
+        copy: t('nlImportFlow.keyExport.description.copy'),
+        signIn: t('nlImportFlow.keyExport.description.signIn'),
+        warning: t('nlImportFlow.keyExport.description.warning')
+      }
+    },
+    serviceSelection: {
+      description: t('nlImportFlow.serviceSelection.description'),
+      defaultProvider: t('nlImportFlow.serviceSelection.defaultProvider')
+    }
+  };
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleInfo: t('nlImportFlow.titleInfo'),
+        titleImport: t('nlImportFlow.titleImport'),
+        description: {
+          intro: t('nlImportFlow.description.intro'),
+          warning: t('nlImportFlow.description.warning'),
+          backup: t('nlImportFlow.description.backup'),
+          recommendation: t('nlImportFlow.description.recommendation')
+        },
+        buttons: {
+          importToKeyStore: t('nlImportFlow.buttons.importToKeyStore'),
+          exportKeys: t('nlImportFlow.buttons.exportKeys'),
+          copyToClipboard: t('nlImportFlow.buttons.copyToClipboard'),
+          copied: t('nlImportFlow.buttons.copied'),
+          startImporting: t('nlImportFlow.buttons.startImporting')
+        },
+        keyExport: {
+          title: t('nlImportFlow.keyExport.title'),
+          description: {
+            copy: t('nlImportFlow.keyExport.description.copy'),
+            signIn: t('nlImportFlow.keyExport.description.signIn'),
+            warning: t('nlImportFlow.keyExport.description.warning')
+          }
+        },
+        serviceSelection: {
+          description: t('nlImportFlow.serviceSelection.description'),
+          defaultProvider: t('nlImportFlow.serviceSelection.defaultProvider')
+        }
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   handleDomainSelect(event: CustomEvent<string>) {
     const s = this.services.find(s => s.domain === event.detail);
@@ -51,27 +121,24 @@ export class NlImportFlow {
     if (!this.isContinued && !this.isKeyBackup) {
       return (
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">{this.titleInfo}</h1>
+          <h1 class="nl-title font-bold text-center text-2xl">{this.translations.titleInfo}</h1>
           <p class="nl-description font-light text-sm pt-2 pb-2 max-w-96 mx-auto">
-            Nostr profiles are controlled by cryptographic keys.
+            {this.translations.description.intro}
             <br />
             <br />
-            Your keys are currently only stored in this browser tab, and may be lost if you close it.
+            {this.translations.description.warning}
             <br />
             <br />
-            You should backup your keys.
+            {this.translations.description.backup}
             <br />
             <br />
-            We recommend to import your keys into a key store service, to protect them and to use with other apps.
-            {/* <br />
-            <br />
-            You can also export your keys and save them in your password manager. */}
+            {this.translations.description.recommendation}
           </p>
           <div class="ml-auto mr-auto mb-2 w-72">
-            <button-base onClick={() => this.handleContinue()} titleBtn="Import to key store" />
+            <button-base onClick={() => this.handleContinue()} titleBtn={this.translations.buttons.importToKeyStore} />
           </div>
           <div class="ml-auto mr-auto w-72">
-            <button-base onClick={() => this.handleContinueKeyBackup()} titleBtn="Export keys" />
+            <button-base onClick={() => this.handleContinueKeyBackup()} titleBtn={this.translations.buttons.exportKeys} />
           </div>
         </div>
       );
@@ -80,19 +147,19 @@ export class NlImportFlow {
     if (this.isKeyBackup) {
       return (
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">Key export</h1>
+          <h1 class="nl-title font-bold text-center text-2xl">{this.translations.keyExport.title}</h1>
           <p class="nl-description font-light text-sm pt-2 pb-2 max-w-96 mx-auto">
-            Copy your keys and store them in a safe place, like a password manager.
+            {this.translations.keyExport.description.copy}
             <br />
             <br />
-            You can sign into other Nostr apps by pasting your keys into them.
+            {this.translations.keyExport.description.signIn}
             <br />
             <br />
-            Your keys must be kept secret, never share them with anyone.
+            {this.translations.keyExport.description.warning}
           </p>
           <div class="max-w-72 mx-auto">
             <div class="ml-auto mr-auto mb-2 w-72">
-              <button-base onClick={() => this.copyToClipboard()} titleBtn={this.isCopy ? 'Copied!' : 'Copy to clipboard'} />
+              <button-base onClick={() => this.copyToClipboard()} titleBtn={this.isCopy ? this.translations.buttons.copied : this.translations.buttons.copyToClipboard} />
             </div>
           </div>
         </div>
@@ -104,9 +171,9 @@ export class NlImportFlow {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">{this.titleImport}</h1>
+          <h1 class="nl-title font-bold text-center text-2xl">{this.translations.titleImport}</h1>
           <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">
-            Your Nostr keys will be imported into the service you choose. You will manage your keys on their website.
+            {this.translations.serviceSelection.description}
           </p>
         </div>
 
@@ -114,13 +181,13 @@ export class NlImportFlow {
           <div class="mb-0.5">
             <nl-select onSelectDomain={e => this.handleDomainSelect(e)} selected={0} options={options}></nl-select>
           </div>
-          <p class="nl-title font-light text-sm mb-2">Default provider is a fine choice to start with.</p>
+          <p class="nl-title font-light text-sm mb-2">{this.translations.serviceSelection.defaultProvider}</p>
 
           <div class="ps-4 pe-4 overflow-y-auto">
             <p class="nl-error font-light text-center text-sm max-w-96 mx-auto">{state.error}</p>
           </div>
 
-          <button-base disabled={state.isLoading} onClick={e => this.handleCreateAccount(e)} titleBtn="Start importing">
+          <button-base disabled={state.isLoading} onClick={e => this.handleCreateAccount(e)} titleBtn={this.translations.buttons.startImporting}>
             {state.isLoading ? (
               <span
                 slot="icon-start"
@@ -143,3 +210,4 @@ export class NlImportFlow {
     );
   }
 }
+
