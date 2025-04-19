@@ -221,5 +221,18 @@
     "description": "Connect with your Nostr profile or create a new one to get started.",
     "signIn": "Sign in",
     "signUp": "Sign up"
+  },
+  "nlWelcomeSignin": {
+    "titleWelcome": "Log in",
+    "buttons": {
+      "withExtension": "With extension",
+      "connect": "Connect",
+      "readOnly": "Read only",
+      "oneTimeCode": "One-time code"
+    },
+    "messages": {
+      "noExtension": "No Nostr extension!",
+      "useAdvanced": "Use advanced options."
+    }
   }
 } 
