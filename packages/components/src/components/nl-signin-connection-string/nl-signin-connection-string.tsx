@@ -1,5 +1,6 @@
 import { Component, h, Prop, Fragment, State, Event, EventEmitter } from '@stencil/core';
 import QRCode from 'qrcode';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-signin-connection-string',
@@ -7,13 +8,33 @@ import QRCode from 'qrcode';
   shadow: false,
 })
 export class NlSigninConnectionString {
-  @Prop() titleLogin = 'Connection string';
-  @Prop() description = 'Scan or copy the connection string with key store app';
   @Prop() connectionString = '';
   @State() isCopy = false;
   @Event() nlNostrConnectDefault: EventEmitter<void>;
+  @State() translations = {
+    titleLogin: t('nlSigninConnectionString.titleLogin'),
+    description: t('nlSigninConnectionString.description'),
+    waitingForConnection: t('nlSigninConnectionString.waitingForConnection')
+  };
 
   private canvasElement: HTMLCanvasElement;
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleLogin: t('nlSigninConnectionString.titleLogin'),
+        description: t('nlSigninConnectionString.description'),
+        waitingForConnection: t('nlSigninConnectionString.waitingForConnection')
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   componentDidLoad() {
     this.nlNostrConnectDefault.emit();
@@ -48,8 +69,8 @@ export class NlSigninConnectionString {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">{this.titleLogin}</h1>
-          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.description}</p>
+          <h1 class="nl-title font-bold text-center text-2xl">{this.translations.titleLogin}</h1>
+          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.translations.description}</p>
         </div>
 
         <canvas class="mx-auto mb-2" ref={el => (this.canvasElement = el as HTMLCanvasElement)}></canvas>
@@ -101,7 +122,7 @@ export class NlSigninConnectionString {
                 role="status"
                 aria-label="loading"
               ></span>
-              <span class="nl-footer">Waiting for connection</span>
+              <span class="nl-footer">{this.translations.waitingForConnection}</span>
             </div>
           </div>
         </div>

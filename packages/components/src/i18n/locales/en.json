@@ -187,5 +187,10 @@
     "button": {
       "connect": "Connect"
     }
+  },
+  "nlSigninConnectionString": {
+    "titleLogin": "Connection string",
+    "description": "Scan or copy the connection string with key store app",
+    "waitingForConnection": "Waiting for connection"
   }
 } 
