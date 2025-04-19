@@ -25,27 +25,27 @@ export class NlImportFlow {
       intro: t('nlImportFlow.description.intro'),
       warning: t('nlImportFlow.description.warning'),
       backup: t('nlImportFlow.description.backup'),
-      recommendation: t('nlImportFlow.description.recommendation')
+      recommendation: t('nlImportFlow.description.recommendation'),
     },
     buttons: {
       importToKeyStore: t('nlImportFlow.buttons.importToKeyStore'),
       exportKeys: t('nlImportFlow.buttons.exportKeys'),
       copyToClipboard: t('nlImportFlow.buttons.copyToClipboard'),
       copied: t('nlImportFlow.buttons.copied'),
-      startImporting: t('nlImportFlow.buttons.startImporting')
+      startImporting: t('nlImportFlow.buttons.startImporting'),
     },
     keyExport: {
       title: t('nlImportFlow.keyExport.title'),
       description: {
         copy: t('nlImportFlow.keyExport.description.copy'),
         signIn: t('nlImportFlow.keyExport.description.signIn'),
-        warning: t('nlImportFlow.keyExport.description.warning')
-      }
+        warning: t('nlImportFlow.keyExport.description.warning'),
+      },
     },
     serviceSelection: {
       description: t('nlImportFlow.serviceSelection.description'),
-      defaultProvider: t('nlImportFlow.serviceSelection.defaultProvider')
-    }
+      defaultProvider: t('nlImportFlow.serviceSelection.defaultProvider'),
+    },
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -59,27 +59,27 @@ export class NlImportFlow {
           intro: t('nlImportFlow.description.intro'),
           warning: t('nlImportFlow.description.warning'),
           backup: t('nlImportFlow.description.backup'),
-          recommendation: t('nlImportFlow.description.recommendation')
+          recommendation: t('nlImportFlow.description.recommendation'),
         },
         buttons: {
           importToKeyStore: t('nlImportFlow.buttons.importToKeyStore'),
           exportKeys: t('nlImportFlow.buttons.exportKeys'),
           copyToClipboard: t('nlImportFlow.buttons.copyToClipboard'),
           copied: t('nlImportFlow.buttons.copied'),
-          startImporting: t('nlImportFlow.buttons.startImporting')
+          startImporting: t('nlImportFlow.buttons.startImporting'),
         },
         keyExport: {
           title: t('nlImportFlow.keyExport.title'),
           description: {
             copy: t('nlImportFlow.keyExport.description.copy'),
             signIn: t('nlImportFlow.keyExport.description.signIn'),
-            warning: t('nlImportFlow.keyExport.description.warning')
-          }
+            warning: t('nlImportFlow.keyExport.description.warning'),
+          },
         },
         serviceSelection: {
           description: t('nlImportFlow.serviceSelection.description'),
-          defaultProvider: t('nlImportFlow.serviceSelection.defaultProvider')
-        }
+          defaultProvider: t('nlImportFlow.serviceSelection.defaultProvider'),
+        },
       };
     });
   }
@@ -172,9 +172,7 @@ export class NlImportFlow {
       <Fragment>
         <div class="p-4 overflow-y-auto">
           <h1 class="nl-title font-bold text-center text-2xl">{this.translations.titleImport}</h1>
-          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">
-            {this.translations.serviceSelection.description}
-          </p>
+          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.translations.serviceSelection.description}</p>
         </div>
 
         <div class="max-w-72 mx-auto mb-5">
@@ -210,4 +208,3 @@ export class NlImportFlow {
     );
   }
 }
-

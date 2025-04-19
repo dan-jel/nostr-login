@@ -20,12 +20,12 @@ export class NlWelcomeSignIn {
       withExtension: t('nlWelcomeSignin.buttons.withExtension'),
       connect: t('nlWelcomeSignin.buttons.connect'),
       readOnly: t('nlWelcomeSignin.buttons.readOnly'),
-      oneTimeCode: t('nlWelcomeSignin.buttons.oneTimeCode')
+      oneTimeCode: t('nlWelcomeSignin.buttons.oneTimeCode'),
     },
     messages: {
       noExtension: t('nlWelcomeSignin.messages.noExtension'),
-      useAdvanced: t('nlWelcomeSignin.messages.useAdvanced')
-    }
+      useAdvanced: t('nlWelcomeSignin.messages.useAdvanced'),
+    },
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -38,12 +38,12 @@ export class NlWelcomeSignIn {
           withExtension: t('nlWelcomeSignin.buttons.withExtension'),
           connect: t('nlWelcomeSignin.buttons.connect'),
           readOnly: t('nlWelcomeSignin.buttons.readOnly'),
-          oneTimeCode: t('nlWelcomeSignin.buttons.oneTimeCode')
+          oneTimeCode: t('nlWelcomeSignin.buttons.oneTimeCode'),
         },
         messages: {
           noExtension: t('nlWelcomeSignin.messages.noExtension'),
-          useAdvanced: t('nlWelcomeSignin.messages.useAdvanced')
-        }
+          useAdvanced: t('nlWelcomeSignin.messages.useAdvanced'),
+        },
       };
     });
   }
@@ -65,15 +65,15 @@ export class NlWelcomeSignIn {
 
   renderSignInWithExtension() {
     return (
-        <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.EXTENSION)} titleBtn={this.translations.buttons.withExtension}>
-          <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Z"
-            />
-          </svg>
-        </button-base>
+      <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.EXTENSION)} titleBtn={this.translations.buttons.withExtension}>
+        <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Z"
+          />
+        </svg>
+      </button-base>
     );
   }
 
@@ -120,7 +120,9 @@ export class NlWelcomeSignIn {
             )}
 
             {this.hasExtension && this.allowAuthMethod('extension') && this.renderSignInWithExtension()}
-            {!this.allowAuthMethod('connect') && !this.hasExtension && <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.translations.messages.noExtension}</p>}
+            {!this.allowAuthMethod('connect') && !this.hasExtension && (
+              <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.translations.messages.noExtension}</p>
+            )}
             {!this.allowAuthMethod('connect') && this.hasExtension && !this.allowAuthMethod('extension') && (
               <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.translations.messages.useAdvanced}</p>
             )}

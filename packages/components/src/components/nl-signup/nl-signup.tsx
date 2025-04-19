@@ -16,8 +16,8 @@ export class NlSignup {
     description: t('nlSignup.description'),
     placeholder: t('nlSignup.placeholder'),
     button: {
-      createProfile: t('nlSignup.button.createProfile')
-    }
+      createProfile: t('nlSignup.button.createProfile'),
+    },
   };
 
   @Event() nlSignup: EventEmitter<string>;
@@ -33,8 +33,8 @@ export class NlSignup {
         description: t('nlSignup.description'),
         placeholder: t('nlSignup.placeholder'),
         button: {
-          createProfile: t('nlSignup.button.createProfile')
-        }
+          createProfile: t('nlSignup.button.createProfile'),
+        },
       };
     });
   }

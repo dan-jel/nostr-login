@@ -44,7 +44,7 @@ const { state, onChange, reset } = createStore({
     code: '',
   },
 
-  nlImport: null as (ConnectionString | null),
+  nlImport: null as ConnectionString | null,
 });
 
 // control show screens & manage history (like as router)

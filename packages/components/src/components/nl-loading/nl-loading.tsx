@@ -15,24 +15,24 @@ export class NlLoading {
   @State() translations = {
     connecting: {
       title: t('nlLoading.connecting.title'),
-      text: t('nlLoading.connecting.text')
+      text: t('nlLoading.connecting.text'),
     },
     creating: {
       title: t('nlLoading.creating.title'),
-      text: t('nlLoading.creating.text')
+      text: t('nlLoading.creating.text'),
     },
     confirming: {
       title: t('nlLoading.confirming.title'),
-      text: t('nlLoading.confirming.text')
+      text: t('nlLoading.confirming.text'),
     },
     ready: {
       title: t('nlLoading.ready.title'),
-      text: t('nlLoading.ready.text')
+      text: t('nlLoading.ready.text'),
     },
     buttons: {
       continue: t('nlLoading.buttons.continue'),
-      cancel: t('nlLoading.buttons.cancel')
-    }
+      cancel: t('nlLoading.buttons.cancel'),
+    },
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -42,24 +42,24 @@ export class NlLoading {
       this.translations = {
         connecting: {
           title: t('nlLoading.connecting.title'),
-          text: t('nlLoading.connecting.text')
+          text: t('nlLoading.connecting.text'),
         },
         creating: {
           title: t('nlLoading.creating.title'),
-          text: t('nlLoading.creating.text')
+          text: t('nlLoading.creating.text'),
         },
         confirming: {
           title: t('nlLoading.confirming.title'),
-          text: t('nlLoading.confirming.text')
+          text: t('nlLoading.confirming.text'),
         },
         ready: {
           title: t('nlLoading.ready.title'),
-          text: t('nlLoading.ready.text')
+          text: t('nlLoading.ready.text'),
         },
         buttons: {
           continue: t('nlLoading.buttons.continue'),
-          cancel: t('nlLoading.buttons.cancel')
-        }
+          cancel: t('nlLoading.buttons.cancel'),
+        },
       };
     });
   }
@@ -84,7 +84,7 @@ export class NlLoading {
   render() {
     let title = this.translations.connecting.title;
     let text = this.translations.connecting.text;
-    
+
     if (state.njumpIframe) {
       title = '';
       text = '';
@@ -107,8 +107,8 @@ export class NlLoading {
 
     return (
       <div class="p-4 overflow-y-auto">
-        {title && (<h1 class="nl-title font-bold text-center text-4xl">{title}</h1>)}
-        {text && (<p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{text}</p>)}
+        {title && <h1 class="nl-title font-bold text-center text-4xl">{title}</h1>}
+        {text && <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{text}</p>}
         {!state.njumpIframe && !state.authUrl && state.isLoading && (
           <div class="mt-10 mb-10 ml-auto mr-auto w-20">
             <span
@@ -129,7 +129,7 @@ export class NlLoading {
         )}
         {state.njumpIframe && (
           <div class="mt-3 ml-auto mr-auto flex justify-center">
-            <iframe srcdoc={state.njumpIframe} width="600px" style={{ border: '0', height: "80vh", borderRadius: "8px" }}></iframe>
+            <iframe srcdoc={state.njumpIframe} width="600px" style={{ border: '0', height: '80vh', borderRadius: '8px' }}></iframe>
           </div>
         )}
         {!showIframe && showButton && (

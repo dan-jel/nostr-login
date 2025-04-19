@@ -17,7 +17,7 @@ export class NlConfirmLogout {
     title: t('nlConfirmLogout.title'),
     description: t('nlConfirmLogout.description'),
     cancel: t('nlConfirmLogout.cancel'),
-    confirm: t('nlConfirmLogout.confirm')
+    confirm: t('nlConfirmLogout.confirm'),
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -28,7 +28,7 @@ export class NlConfirmLogout {
         title: t('nlConfirmLogout.title'),
         description: t('nlConfirmLogout.description'),
         cancel: t('nlConfirmLogout.cancel'),
-        confirm: t('nlConfirmLogout.confirm')
+        confirm: t('nlConfirmLogout.confirm'),
       };
     });
   }

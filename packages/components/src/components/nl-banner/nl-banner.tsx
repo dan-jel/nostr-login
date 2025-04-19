@@ -23,7 +23,7 @@ export class NlBanner {
   @State() translations = {
     logo: {
       nostr: t('nlBanner.logo.nostr'),
-      login: t('nlBanner.logo.login')
+      login: t('nlBanner.logo.login'),
     },
     buttons: {
       close: t('nlBanner.buttons.close'),
@@ -31,14 +31,14 @@ export class NlBanner {
       backupProfile: t('nlBanner.buttons.backupProfile'),
       login: t('nlBanner.buttons.login'),
       signup: t('nlBanner.buttons.signup'),
-      logout: t('nlBanner.buttons.logout')
+      logout: t('nlBanner.buttons.logout'),
     },
     messages: {
       timeout: t('nlBanner.messages.timeout'),
       confirmation: t('nlBanner.messages.confirmation'),
       goTo: t('nlBanner.messages.goTo'),
-      profileWarning: t('nlBanner.messages.profileWarning')
-    }
+      profileWarning: t('nlBanner.messages.profileWarning'),
+    },
   };
 
   @State() domain: string = '';
@@ -61,7 +61,7 @@ export class NlBanner {
       this.translations = {
         logo: {
           nostr: t('nlBanner.logo.nostr'),
-          login: t('nlBanner.logo.login')
+          login: t('nlBanner.logo.login'),
         },
         buttons: {
           close: t('nlBanner.buttons.close'),
@@ -69,14 +69,14 @@ export class NlBanner {
           backupProfile: t('nlBanner.buttons.backupProfile'),
           login: t('nlBanner.buttons.login'),
           signup: t('nlBanner.buttons.signup'),
-          logout: t('nlBanner.buttons.logout')
+          logout: t('nlBanner.buttons.logout'),
         },
         messages: {
           timeout: t('nlBanner.messages.timeout'),
           confirmation: t('nlBanner.messages.confirmation'),
           goTo: t('nlBanner.messages.goTo'),
-          profileWarning: t('nlBanner.messages.profileWarning')
-        }
+          profileWarning: t('nlBanner.messages.profileWarning'),
+        },
       };
     });
   }

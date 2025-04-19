@@ -19,7 +19,7 @@ export class NLChangeAccount {
 
   @State() translations = {
     switchProfile: t('nlChangeAccount.switchProfile'),
-    addProfile: t('nlChangeAccount.addProfile')
+    addProfile: t('nlChangeAccount.addProfile'),
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -34,7 +34,7 @@ export class NLChangeAccount {
     this.unsubscribeLanguageChange = onLanguageChanged(() => {
       this.translations = {
         switchProfile: t('nlChangeAccount.switchProfile'),
-        addProfile: t('nlChangeAccount.addProfile')
+        addProfile: t('nlChangeAccount.addProfile'),
       };
     });
   }

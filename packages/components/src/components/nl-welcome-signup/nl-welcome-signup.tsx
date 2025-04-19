@@ -14,8 +14,8 @@ export class NlWelcomeSignUp {
     description: t('nlWelcomeSignup.description'),
     buttons: {
       createKeys: t('nlWelcomeSignup.buttons.createKeys'),
-      withKeyStore: t('nlWelcomeSignup.buttons.withKeyStore')
-    }
+      withKeyStore: t('nlWelcomeSignup.buttons.withKeyStore'),
+    },
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -27,8 +27,8 @@ export class NlWelcomeSignUp {
         description: t('nlWelcomeSignup.description'),
         buttons: {
           createKeys: t('nlWelcomeSignup.buttons.createKeys'),
-          withKeyStore: t('nlWelcomeSignup.buttons.withKeyStore')
-        }
+          withKeyStore: t('nlWelcomeSignup.buttons.withKeyStore'),
+        },
       };
     });
   }

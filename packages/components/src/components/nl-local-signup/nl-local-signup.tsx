@@ -18,8 +18,8 @@ export class NlLocalSignup {
     placeholder: t('nlLocalSignup.placeholder'),
     button: {
       getStarted: t('nlLocalSignup.button.getStarted'),
-      createProfile: t('nlLocalSignup.button.createProfile')
-    }
+      createProfile: t('nlLocalSignup.button.createProfile'),
+    },
   };
 
   @Event() nlLocalSignup: EventEmitter<string>;
@@ -38,8 +38,8 @@ export class NlLocalSignup {
         placeholder: t('nlLocalSignup.placeholder'),
         button: {
           getStarted: t('nlLocalSignup.button.getStarted'),
-          createProfile: t('nlLocalSignup.button.createProfile')
-        }
+          createProfile: t('nlLocalSignup.button.createProfile'),
+        },
       };
     });
   }
@@ -106,7 +106,11 @@ export class NlLocalSignup {
             <p class="nl-error font-light text-center text-sm max-w-96 mx-auto">{state.error}</p>
           </div>
 
-          <button-base disabled={state.isLoading} onClick={e => this.handleCreateAccount(e)} titleBtn={this.signupNjump ? this.translations.button.getStarted : this.translations.button.createProfile}>
+          <button-base
+            disabled={state.isLoading}
+            onClick={e => this.handleCreateAccount(e)}
+            titleBtn={this.signupNjump ? this.translations.button.getStarted : this.translations.button.createProfile}
+          >
             {state.isLoading ? (
               <span
                 slot="icon-start"

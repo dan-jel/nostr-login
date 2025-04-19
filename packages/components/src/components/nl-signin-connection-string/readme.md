@@ -2,13 +2,11 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property           | Attribute           | Description | Type     | Default |
 | ------------------ | ------------------- | ----------- | -------- | ------- |
 | `connectionString` | `connection-string` |             | `string` | `''`    |
-
 
 ## Events
 
@@ -16,20 +14,20 @@
 | ----------------------- | ----------- | ------------------- |
 | `nlNostrConnectDefault` |             | `CustomEvent<void>` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [nl-auth](../nl-auth)
+- [nl-auth](../nl-auth)
 
 ### Graph
+
 ```mermaid
 graph TD;
   nl-auth --> nl-signin-connection-string
   style nl-signin-connection-string fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

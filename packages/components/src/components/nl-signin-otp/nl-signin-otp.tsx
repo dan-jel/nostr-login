@@ -16,8 +16,8 @@ export class NlSigninOtp {
     descriptionOTP: t('nlSigninOtp.descriptionOTP'),
     placeholder: {
       code: t('nlSigninOtp.placeholder.code'),
-      username: t('nlSigninOtp.placeholder.username')
-    }
+      username: t('nlSigninOtp.placeholder.username'),
+    },
   };
 
   @Event() nlLoginOTPUser: EventEmitter<string>;
@@ -35,8 +35,8 @@ export class NlSigninOtp {
         descriptionOTP: t('nlSigninOtp.descriptionOTP'),
         placeholder: {
           code: t('nlSigninOtp.placeholder.code'),
-          username: t('nlSigninOtp.placeholder.username')
-        }
+          username: t('nlSigninOtp.placeholder.username'),
+        },
       };
     });
   }

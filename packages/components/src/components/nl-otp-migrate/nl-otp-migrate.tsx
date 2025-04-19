@@ -16,7 +16,7 @@ export class NlImportFlow {
     titleImport: t('nlOtpMigrate.titleImport'),
     textImport: t('nlOtpMigrate.textImport'),
     defaultProvider: t('nlOtpMigrate.defaultProvider'),
-    startImporting: t('nlOtpMigrate.startImporting')
+    startImporting: t('nlOtpMigrate.startImporting'),
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -28,7 +28,7 @@ export class NlImportFlow {
         titleImport: t('nlOtpMigrate.titleImport'),
         textImport: t('nlOtpMigrate.textImport'),
         defaultProvider: t('nlOtpMigrate.defaultProvider'),
-        startImporting: t('nlOtpMigrate.startImporting')
+        startImporting: t('nlOtpMigrate.startImporting'),
       };
     });
   }

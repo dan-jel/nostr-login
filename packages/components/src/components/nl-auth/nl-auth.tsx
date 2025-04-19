@@ -35,26 +35,26 @@ export class NlAuth {
   @State() translations = {
     logo: {
       nostr: t('nlAuth.logo.nostr'),
-      login: t('nlAuth.logo.login')
+      login: t('nlAuth.logo.login'),
     },
     buttons: {
       changeTheme: t('nlAuth.buttons.changeTheme'),
       info: t('nlAuth.buttons.info'),
       close: t('nlAuth.buttons.close'),
-      back: t('nlAuth.buttons.back')
+      back: t('nlAuth.buttons.back'),
     },
     footer: {
       existingProfile: {
         prefix: t('nlAuth.footer.existingProfile.prefix'),
         link: t('nlAuth.footer.existingProfile.link'),
-        suffix: t('nlAuth.footer.existingProfile.suffix')
+        suffix: t('nlAuth.footer.existingProfile.suffix'),
       },
       noProfile: {
         prefix: t('nlAuth.footer.noProfile.prefix'),
         link: t('nlAuth.footer.noProfile.link'),
-        suffix: t('nlAuth.footer.noProfile.suffix')
-      }
-    }
+        suffix: t('nlAuth.footer.noProfile.suffix'),
+      },
+    },
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -105,26 +105,26 @@ export class NlAuth {
       this.translations = {
         logo: {
           nostr: t('nlAuth.logo.nostr'),
-          login: t('nlAuth.logo.login')
+          login: t('nlAuth.logo.login'),
         },
         buttons: {
           changeTheme: t('nlAuth.buttons.changeTheme'),
           info: t('nlAuth.buttons.info'),
           close: t('nlAuth.buttons.close'),
-          back: t('nlAuth.buttons.back')
+          back: t('nlAuth.buttons.back'),
         },
         footer: {
           existingProfile: {
             prefix: t('nlAuth.footer.existingProfile.prefix'),
             link: t('nlAuth.footer.existingProfile.link'),
-            suffix: t('nlAuth.footer.existingProfile.suffix')
+            suffix: t('nlAuth.footer.existingProfile.suffix'),
           },
           noProfile: {
             prefix: t('nlAuth.footer.noProfile.prefix'),
             link: t('nlAuth.footer.noProfile.link'),
-            suffix: t('nlAuth.footer.noProfile.suffix')
-          }
-        }
+            suffix: t('nlAuth.footer.noProfile.suffix'),
+          },
+        },
       };
     });
   }

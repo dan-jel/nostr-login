@@ -14,8 +14,8 @@ export class NlSigninBunkerUrl {
     description: t('nlSigninBunkerUrl.description'),
     placeholder: t('nlSigninBunkerUrl.placeholder'),
     button: {
-      connect: t('nlSigninBunkerUrl.button.connect')
-    }
+      connect: t('nlSigninBunkerUrl.button.connect'),
+    },
   };
 
   @Event() nlLogin: EventEmitter<string>;
@@ -30,8 +30,8 @@ export class NlSigninBunkerUrl {
         description: t('nlSigninBunkerUrl.description'),
         placeholder: t('nlSigninBunkerUrl.placeholder'),
         button: {
-          connect: t('nlSigninBunkerUrl.button.connect')
-        }
+          connect: t('nlSigninBunkerUrl.button.connect'),
+        },
       };
     });
   }

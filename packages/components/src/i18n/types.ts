@@ -61,4 +61,4 @@ export type TranslationKeys = {
   };
 };
 
-export type TranslationKey = keyof TranslationKeys | `${keyof TranslationKeys}.${string}`; 
+export type TranslationKey = keyof TranslationKeys | `${keyof TranslationKeys}.${string}`;

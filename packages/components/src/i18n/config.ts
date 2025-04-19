@@ -3,22 +3,20 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './locales/en.json';
 
 // i18next Initialisierung
-i18next
-  .use(LanguageDetector)
-  .init({
-    resources: {
-      en: { translation: en },
-    },
-    fallbackLng: 'en',
-    debug: process.env.NODE_ENV === 'development',
-    interpolation: {
-      escapeValue: false
-    },
-    detection: {
-      order: ['navigator', 'htmlTag'],
-      caches: ['localStorage']
-    }
-  });
+i18next.use(LanguageDetector).init({
+  resources: {
+    en: { translation: en },
+  },
+  fallbackLng: 'en',
+  debug: process.env.NODE_ENV === 'development',
+  interpolation: {
+    escapeValue: false,
+  },
+  detection: {
+    order: ['navigator', 'htmlTag'],
+    caches: ['localStorage'],
+  },
+});
 
 // Exportiere die i18next-Instanz für direkten Zugriff
 export const i18n = i18next;
@@ -32,4 +30,4 @@ export const onLanguageChanged = (callback: (lng: string) => void) => {
   return () => i18next.off('languageChanged', callback);
 };
 
-export default i18next; 
+export default i18next;

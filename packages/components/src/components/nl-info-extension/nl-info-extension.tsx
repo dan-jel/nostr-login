@@ -13,8 +13,8 @@ export class NlInfoExtension {
     loading: t('nlInfoExtension.loading'),
     installExtension: {
       title: t('nlInfoExtension.installExtension.title'),
-      description: t('nlInfoExtension.installExtension.description')
-    }
+      description: t('nlInfoExtension.installExtension.description'),
+    },
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -26,8 +26,8 @@ export class NlInfoExtension {
         loading: t('nlInfoExtension.loading'),
         installExtension: {
           title: t('nlInfoExtension.installExtension.title'),
-          description: t('nlInfoExtension.installExtension.description')
-        }
+          description: t('nlInfoExtension.installExtension.description'),
+        },
       };
     });
   }
@@ -41,8 +41,8 @@ export class NlInfoExtension {
   private renderTextWithLinks(text: string, urls: string[]) {
     const parts = text.split(/(<a>.*?<\/a>)/);
     let urlIndex = 0;
-    
-    return parts.map((part) => {
+
+    return parts.map(part => {
       if (part.startsWith('<a>') && part.endsWith('</a>')) {
         const linkText = part.slice(3, -4);
         return (
@@ -80,7 +80,7 @@ export class NlInfoExtension {
               {this.renderTextWithLinks(this.translations.installExtension.description, [
                 'https://getalby.com',
                 'https://chromewebstore.google.com/detail/nos2x/kpgefcfmnafjgpblomihpgmejjdanjjp',
-                'https://apps.apple.com/us/app/nostore/id1666553677'
+                'https://apps.apple.com/us/app/nostore/id1666553677',
               ])}
             </p>
           </div>

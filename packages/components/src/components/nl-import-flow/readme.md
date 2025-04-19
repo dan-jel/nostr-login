@@ -2,13 +2,11 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property   | Attribute | Description | Type                 | Default |
 | ---------- | --------- | ----------- | -------------------- | ------- |
 | `services` | --        |             | `ConnectionString[]` | `[]`    |
-
 
 ## Events
 
@@ -17,12 +15,11 @@
 | `nlExportKeys`    |             | `CustomEvent<void>`             |
 | `nlImportAccount` |             | `CustomEvent<ConnectionString>` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [nl-auth](../nl-auth)
+- [nl-auth](../nl-auth)
 
 ### Depends on
 
@@ -30,6 +27,7 @@
 - [nl-select](../nl-select)
 
 ### Graph
+
 ```mermaid
 graph TD;
   nl-import-flow --> button-base
@@ -38,6 +36,6 @@ graph TD;
   style nl-import-flow fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

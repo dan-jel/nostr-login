@@ -12,7 +12,7 @@ export class NlConfirmLogout {
 
   @State() translations = {
     titleModal: t('nlIframe.titleModal'),
-    description: t('nlIframe.description')
+    description: t('nlIframe.description'),
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -21,7 +21,7 @@ export class NlConfirmLogout {
     this.unsubscribeLanguageChange = onLanguageChanged(() => {
       this.translations = {
         titleModal: t('nlIframe.titleModal'),
-        description: t('nlIframe.description')
+        description: t('nlIframe.description'),
       };
     });
   }

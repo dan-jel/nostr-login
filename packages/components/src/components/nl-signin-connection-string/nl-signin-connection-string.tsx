@@ -14,7 +14,7 @@ export class NlSigninConnectionString {
   @State() translations = {
     titleLogin: t('nlSigninConnectionString.titleLogin'),
     description: t('nlSigninConnectionString.description'),
-    waitingForConnection: t('nlSigninConnectionString.waitingForConnection')
+    waitingForConnection: t('nlSigninConnectionString.waitingForConnection'),
   };
 
   private canvasElement: HTMLCanvasElement;
@@ -25,7 +25,7 @@ export class NlSigninConnectionString {
       this.translations = {
         titleLogin: t('nlSigninConnectionString.titleLogin'),
         description: t('nlSigninConnectionString.description'),
-        waitingForConnection: t('nlSigninConnectionString.waitingForConnection')
+        waitingForConnection: t('nlSigninConnectionString.waitingForConnection'),
       };
     });
   }

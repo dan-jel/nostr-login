@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                   | Attribute   | Description | Type                 | Default |
@@ -11,25 +10,24 @@
 | `connectionStringServices` | --          |             | `ConnectionString[]` | `[]`    |
 | `hasOTP`                   | `has-o-t-p` |             | `boolean`            | `false` |
 
-
 ## Events
 
 | Event            | Description | Type                            |
 | ---------------- | ----------- | ------------------------------- |
 | `nlNostrConnect` |             | `CustomEvent<ConnectionString>` |
 
-
 ## Dependencies
 
 ### Used by
 
- - [nl-auth](../nl-auth)
+- [nl-auth](../nl-auth)
 
 ### Depends on
 
 - [button-base](../button-base)
 
 ### Graph
+
 ```mermaid
 graph TD;
   nl-connect --> button-base
@@ -37,6 +35,6 @@ graph TD;
   style nl-connect fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

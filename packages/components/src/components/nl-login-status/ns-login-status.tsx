@@ -15,7 +15,7 @@ export class NlLoginStatus {
     readOnly: t('nlLoginStatus.readOnly'),
     connect: t('nlLoginStatus.connect'),
     local: t('nlLoginStatus.local'),
-    otp: t('nlLoginStatus.otp')
+    otp: t('nlLoginStatus.otp'),
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -27,7 +27,7 @@ export class NlLoginStatus {
         readOnly: t('nlLoginStatus.readOnly'),
         connect: t('nlLoginStatus.connect'),
         local: t('nlLoginStatus.local'),
-        otp: t('nlLoginStatus.otp')
+        otp: t('nlLoginStatus.otp'),
       };
     });
   }

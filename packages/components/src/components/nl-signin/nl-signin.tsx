@@ -13,8 +13,8 @@ export class NlSignin {
     description: t('nlSignin.description'),
     placeholder: t('nlSignin.placeholder'),
     button: {
-      connect: t('nlSignin.button.connect')
-    }
+      connect: t('nlSignin.button.connect'),
+    },
   };
 
   @State() isGood = false;
@@ -31,8 +31,8 @@ export class NlSignin {
         description: t('nlSignin.description'),
         placeholder: t('nlSignin.placeholder'),
         button: {
-          connect: t('nlSignin.button.connect')
-        }
+          connect: t('nlSignin.button.connect'),
+        },
       };
     });
   }

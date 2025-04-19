@@ -11,7 +11,7 @@ export class NlSigninReadOnly {
   @State() translations = {
     titleLogin: t('nlSigninReadOnly.titleLogin'),
     description: t('nlSigninReadOnly.description'),
-    placeholder: t('nlSigninReadOnly.placeholder')
+    placeholder: t('nlSigninReadOnly.placeholder'),
   };
   @State() isGood = false;
 
@@ -25,7 +25,7 @@ export class NlSigninReadOnly {
       this.translations = {
         titleLogin: t('nlSigninReadOnly.titleLogin'),
         description: t('nlSigninReadOnly.description'),
-        placeholder: t('nlSigninReadOnly.placeholder')
+        placeholder: t('nlSigninReadOnly.placeholder'),
       };
     });
   }

@@ -10,13 +10,13 @@ export class NlInfo {
   @State() translations = {
     title: {
       nostr: t('nlInfo.title.nostr'),
-      login: t('nlInfo.title.login')
+      login: t('nlInfo.title.login'),
     },
     version: t('nlInfo.version', { version: '1.7.11' }),
     description: {
       learnMore: t('nlInfo.description.learnMore'),
-      openSource: t('nlInfo.description.openSource')
-    }
+      openSource: t('nlInfo.description.openSource'),
+    },
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -26,13 +26,13 @@ export class NlInfo {
       this.translations = {
         title: {
           nostr: t('nlInfo.title.nostr'),
-          login: t('nlInfo.title.login')
+          login: t('nlInfo.title.login'),
         },
         version: t('nlInfo.version', { version: '1.7.11' }),
         description: {
           learnMore: t('nlInfo.description.learnMore'),
-          openSource: t('nlInfo.description.openSource')
-        }
+          openSource: t('nlInfo.description.openSource'),
+        },
       };
     });
   }
@@ -46,8 +46,8 @@ export class NlInfo {
   private renderTextWithLinks(text: string, urls: string[]) {
     const parts = text.split(/(<a>.*?<\/a>)/);
     let urlIndex = 0;
-    
-    return parts.map((part) => {
+
+    return parts.map(part => {
       if (part.startsWith('<a>') && part.endsWith('</a>')) {
         const linkText = part.slice(3, -4);
         return (
@@ -77,10 +77,7 @@ export class NlInfo {
         <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">
           {this.renderTextWithLinks(this.translations.description.learnMore, ['https://nostr.how'])}
           <br />
-          {this.renderTextWithLinks(this.translations.description.openSource, [
-            'https://github.com/nostrband/nostr-login',
-            'https://nostr.band'
-          ])}
+          {this.renderTextWithLinks(this.translations.description.openSource, ['https://github.com/nostrband/nostr-login', 'https://nostr.band'])}
         </p>
       </div>
     );

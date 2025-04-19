@@ -13,7 +13,7 @@ export class NlWelcome {
     titleWelcome: t('welcome.title'),
     description: t('welcome.description'),
     signIn: t('welcome.signIn'),
-    signUp: t('welcome.signUp')
+    signUp: t('welcome.signUp'),
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -24,7 +24,7 @@ export class NlWelcome {
         titleWelcome: t('welcome.title'),
         description: t('welcome.description'),
         signIn: t('welcome.signIn'),
-        signUp: t('welcome.signUp')
+        signUp: t('welcome.signUp'),
       };
     });
   }

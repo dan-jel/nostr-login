@@ -22,7 +22,7 @@ export class NlConnect {
     advanced: t('nlConnect.advanced'),
     userName: t('nlConnect.userName'),
     connectionString: t('nlConnect.connectionString'),
-    bunkerUrl: t('nlConnect.bunkerUrl')
+    bunkerUrl: t('nlConnect.bunkerUrl'),
   };
 
   private unsubscribeLanguageChange: () => void;
@@ -35,7 +35,7 @@ export class NlConnect {
         advanced: t('nlConnect.advanced'),
         userName: t('nlConnect.userName'),
         connectionString: t('nlConnect.connectionString'),
-        bunkerUrl: t('nlConnect.bunkerUrl')
+        bunkerUrl: t('nlConnect.bunkerUrl'),
       };
     });
   }
@@ -66,7 +66,7 @@ export class NlConnect {
   }
 
   handleConnectionString() {
-    this.handleChangeScreen(CURRENT_MODULE.CONNECTION_STRING)
+    this.handleChangeScreen(CURRENT_MODULE.CONNECTION_STRING);
   }
 
   render() {
