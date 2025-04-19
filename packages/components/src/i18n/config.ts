@@ -1,11 +1,13 @@
 import i18next from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import en from './locales/en.json';
+import de from './locales/de.json';
 
 // i18next Initialisierung
 i18next.use(LanguageDetector).init({
   resources: {
     en: { translation: en },
+    de: { translation: de },
   },
   fallbackLng: 'en',
   debug: process.env.NODE_ENV === 'development',

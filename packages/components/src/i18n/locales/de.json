@@ -1,0 +1,246 @@
+{
+  "buttonBase": {
+    "defaultTitle": "Modal öffnen"
+  },
+  "nlAuth": {
+    "logo": {
+      "nostr": "Nostr",
+      "login": "Anmeldung"
+    },
+    "buttons": {
+      "changeTheme": "Design ändern",
+      "info": "Info",
+      "close": "Schließen",
+      "back": "Zurück"
+    },
+    "footer": {
+      "existingProfile": {
+        "prefix": "Wenn Sie bereits ein Profil haben, bitte",
+        "link": "anmelden",
+        "suffix": "."
+      },
+      "noProfile": {
+        "prefix": "Wenn Sie kein Profil haben, bitte",
+        "link": "registrieren",
+        "suffix": "."
+      }
+    }
+  },
+  "nlBanner": {
+    "logo": {
+      "nostr": "Nostr",
+      "login": "Anmeldung"
+    },
+    "buttons": {
+      "close": "Schließen",
+      "confirm": "Bestätigen",
+      "backupProfile": "Profil sichern",
+      "login": "Anmelden",
+      "signup": "Registrieren",
+      "logout": "Abmelden"
+    },
+    "messages": {
+      "timeout": "Schlüssel reagieren nicht, überprüfen Sie Ihre Schlüsselspeicher-App",
+      "confirmation": "Bestätigung erforderlich bei {{domain}}",
+      "goTo": "Gehe zu {{domain}}",
+      "profileWarning": "Ihr Profil könnte verloren gehen, wenn Sie diesen Tab schließen"
+    }
+  },
+  "nlButton": {
+    "defaultTitle": "Modal öffnen"
+  },
+  "nlChangeAccount": {
+    "switchProfile": "Profil wechseln",
+    "addProfile": "Profil hinzufügen"
+  },
+  "nlConfirmLogout": {
+    "title": "Abmelden",
+    "description": "Sind Sie sicher, dass Sie sich abmelden möchten?",
+    "cancel": "Abbrechen",
+    "confirm": "Abmelden"
+  },
+  "nlConnect": {
+    "titleWelcome": "Mit Schlüsselspeicher verbinden",
+    "selectKeyStore": "Schlüsselspeicher auswählen:",
+    "advanced": "Erweitert",
+    "userName": "Benutzername",
+    "connectionString": "Verbindungszeichenfolge",
+    "bunkerUrl": "Bunker-URL"
+  },
+  "nlIframe": {
+    "titleModal": "Bestätigen",
+    "description": "Ihre Profilschlüssel werden in diesem Browser-Tab gespeichert und werden gelöscht, wenn Sie sich abmelden, und Ihr Profil wird unzugänglich."
+  },
+  "nlImportFlow": {
+    "titleInfo": "Sichern Sie Ihre Schlüssel",
+    "titleImport": "Wählen Sie einen Dienst",
+    "description": {
+      "intro": "Nostr-Profile werden durch kryptografische Schlüssel gesteuert.",
+      "warning": "Ihre Schlüssel werden derzeit nur in diesem Browser-Tab gespeichert und können verloren gehen, wenn Sie ihn schließen.",
+      "backup": "Sie sollten Ihre Schlüssel sichern.",
+      "recommendation": "Wir empfehlen, Ihre Schlüssel in einen Schlüsselspeicherdienst zu importieren, um sie zu schützen und mit anderen Apps zu verwenden."
+    },
+    "buttons": {
+      "importToKeyStore": "In Schlüsselspeicher importieren",
+      "exportKeys": "Schlüssel exportieren",
+      "copyToClipboard": "In Zwischenablage kopieren",
+      "copied": "Kopiert!",
+      "startImporting": "Import starten"
+    },
+    "keyExport": {
+      "title": "Schlüsselexport",
+      "description": {
+        "copy": "Kopieren Sie Ihre Schlüssel und speichern Sie sie an einem sicheren Ort, wie einem Passwort-Manager.",
+        "signIn": "Sie können sich bei anderen Nostr-Apps anmelden, indem Sie Ihre Schlüssel dort einfügen.",
+        "warning": "Ihre Schlüssel müssen geheim gehalten werden, geben Sie sie niemals an andere weiter."
+      }
+    },
+    "serviceSelection": {
+      "description": "Ihre Nostr-Schlüssel werden in den von Ihnen gewählten Dienst importiert. Sie verwalten Ihre Schlüssel auf deren Website.",
+      "defaultProvider": "Der Standardanbieter ist eine gute Wahl für den Anfang."
+    }
+  },
+  "nlInfo": {
+    "title": {
+      "nostr": "Nostr",
+      "login": "Anmeldung"
+    },
+    "version": "Version: {{version}}",
+    "description": {
+      "learnMore": "Erfahren Sie mehr über Nostr <a>hier</a>.",
+      "openSource": "Dies ist ein <a>Open-Source</a>-Tool von <a>Nostr.Band</a>."
+    }
+  },
+  "nlInfoExtension": {
+    "signingIn": "Anmeldung läuft...",
+    "loading": "Laden",
+    "installExtension": {
+      "title": "Browser-Erweiterung installieren!",
+      "description": "Probieren Sie <a>Alby</a>, <a>nos2x</a> oder <a>Nostore</a>"
+    }
+  },
+  "nlLoading": {
+    "connecting": {
+      "title": "Verbinden...",
+      "text": "Verbindung zu Ihrem Schlüsselspeicher wird hergestellt."
+    },
+    "creating": {
+      "title": "Erstellen...",
+      "text": "Ihr Profil wird auf Nostr veröffentlicht."
+    },
+    "confirming": {
+      "title": "Bestätigen...",
+      "text": "Bitte bestätigen Sie die Verbindung in Ihrer Schlüsselspeicher-App."
+    },
+    "ready": {
+      "title": "Fast fertig!",
+      "text": "Fahren Sie fort, um die Verbindung zu Ihrem Schlüsselspeicher zu bestätigen."
+    },
+    "buttons": {
+      "continue": "Weiter",
+      "cancel": "Abbrechen"
+    }
+  },
+  "nlLocalSignup": {
+    "titleSignup": "Nostr-Profil erstellen",
+    "description": "Wählen Sie einen beliebigen Benutzernamen, Sie können ihn später jederzeit ändern.",
+    "descriptionNjump": "Fahren Sie mit der Erstellung Ihres Nostr-Profils in einem neuen Tab fort.",
+    "placeholder": "Benutzernamen eingeben",
+    "button": {
+      "getStarted": "Loslegen",
+      "createProfile": "Profil erstellen"
+    }
+  },
+  "nlLoginStatus": {
+    "extension": "Erweiterung",
+    "readOnly": "Nur lesen",
+    "connect": "Verbinden",
+    "local": "Temporär",
+    "otp": "Delegiert"
+  },
+  "nlOtpMigrate": {
+    "titleInfo": "Schlüssel in Speicherdienst importieren",
+    "titleImport": "Wählen Sie einen Dienst",
+    "textImport": "Sie werden aufgefordert, Schlüssel in den gewählten Dienst zu importieren, und diese Website wird sich mit Ihren Schlüsseln verbinden.",
+    "defaultProvider": "Der Standardanbieter ist eine gute Wahl für den Anfang.",
+    "startImporting": "Import starten"
+  },
+  "nlPreviouslyLogged": {
+    "title": "Ihre Profile",
+    "description": "Wechseln Sie zwischen aktiven Profilen oder wählen Sie ein kürzlich verwendetes für schnelle Anmeldung.",
+    "activeProfiles": "Aktive Profile",
+    "recentProfiles": "Kürzlich verwendete Profile",
+    "addAnotherProfile": "ein weiteres Profil hinzufügen"
+  },
+  "nlSignin": {
+    "titleLogin": "Mit Schlüsselspeicher verbinden",
+    "description": "Bitte geben Sie Ihren Benutzernamen ein.",
+    "placeholder": "name@domain.com",
+    "button": {
+      "connect": "Verbinden"
+    }
+  },
+  "nlSigninBunkerUrl": {
+    "titleLogin": "Mit Bunker-URL verbinden",
+    "description": "Bitte geben Sie eine vom Schlüsselspeicher bereitgestellte Bunker-URL ein.",
+    "placeholder": "bunker://...",
+    "button": {
+      "connect": "Verbinden"
+    }
+  },
+  "nlSigninConnectionString": {
+    "titleLogin": "Verbindungszeichenfolge",
+    "description": "Scannen oder kopieren Sie die Verbindungszeichenfolge mit der Schlüsselspeicher-App",
+    "waitingForConnection": "Warten auf Verbindung"
+  },
+  "nlSigninOtp": {
+    "titleLogin": "Mit DM anmelden",
+    "description": "Bitte geben Sie Ihren Benutzernamen oder npub ein, und wir senden Ihnen einen Einmalcode per Direktnachricht.",
+    "titleLoginOTP": "Code eingeben",
+    "descriptionOTP": "Bitte geben Sie den Einmalcode ein, den wir Ihnen als Direktnachricht auf Nostr gesendet haben.",
+    "placeholder": {
+      "code": "Code aus Direktnachricht",
+      "username": "npub oder name@domain"
+    }
+  },
+  "nlSigninReadOnly": {
+    "titleLogin": "Nur-Lese-Zugang",
+    "description": "Bitte geben Sie den Benutzernamen oder npub eines beliebigen Nostr-Benutzers ein.",
+    "placeholder": "npub oder name@domain"
+  },
+  "nlSignup": {
+    "titleSignup": "Schlüssel mit Schlüsselspeicher erstellen",
+    "description": "Wählen Sie einen Benutzernamen und einen Schlüsselspeicherdienst.",
+    "placeholder": "Name",
+    "button": {
+      "createProfile": "Profil erstellen"
+    }
+  },
+  "welcome": {
+    "title": "Willkommen bei Nostr Login",
+    "description": "Verbinden Sie sich mit Ihrem Nostr-Profil oder erstellen Sie ein neues, um zu beginnen.",
+    "signIn": "Anmelden",
+    "signUp": "Registrieren"
+  },
+  "nlWelcomeSignin": {
+    "titleWelcome": "Anmelden",
+    "buttons": {
+      "withExtension": "Mit Erweiterung",
+      "connect": "Verbinden",
+      "readOnly": "Nur lesen",
+      "oneTimeCode": "Einmalcode"
+    },
+    "messages": {
+      "noExtension": "Keine Nostr-Erweiterung!",
+      "useAdvanced": "Erweiterte Optionen verwenden."
+    }
+  },
+  "nlWelcomeSignup": {
+    "titleWelcome": "Registrieren",
+    "description": "Nostr-Profile basieren auf kryptografischen Schlüsseln. Sie können Schlüssel hier erstellen oder mit einer Schlüsselspeicher-App.",
+    "buttons": {
+      "createKeys": "Schlüssel erstellen",
+      "withKeyStore": "Mit Schlüsselspeicher"
+    }
+  }
+} 
