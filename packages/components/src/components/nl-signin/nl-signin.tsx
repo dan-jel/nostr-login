@@ -1,4 +1,4 @@
-import { Component, h, State, Prop, Fragment, Event, EventEmitter } from '@stencil/core';
+import { Component, h, State, Fragment, Event, EventEmitter } from '@stencil/core';
 import { state } from '@/store';
 import { t, onLanguageChanged } from '@/i18n/config';
 
