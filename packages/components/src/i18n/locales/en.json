@@ -140,5 +140,15 @@
       "continue": "Continue",
       "cancel": "Cancel"
     }
+  },
+  "nlLocalSignup": {
+    "titleSignup": "Create Nostr profile",
+    "description": "Choose any username, you can always change it later.",
+    "descriptionNjump": "Proceed to creating your Nostr profile in a new tab.",
+    "placeholder": "Enter username",
+    "button": {
+      "getStarted": "Get started",
+      "createProfile": "Create profile"
+    }
   }
 } 

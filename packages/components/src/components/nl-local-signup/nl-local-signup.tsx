@@ -1,5 +1,6 @@
 import { Component, h, Fragment, State, Prop, Event, EventEmitter } from '@stencil/core';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-local-signup',
@@ -7,17 +8,47 @@ import { state } from '@/store';
   shadow: false,
 })
 export class NlLocalSignup {
-  @Prop() titleSignup = 'Create Nostr profile';
-  @Prop() description = 'Choose any username, you can always change it later.';
-  @Prop() descriptionNjump = 'Proceed to creating your Nostr profile in a new tab.';
   @Prop() signupNjump = false;
 
   @State() isAvailable = false;
+  @State() translations = {
+    titleSignup: t('nlLocalSignup.titleSignup'),
+    description: t('nlLocalSignup.description'),
+    descriptionNjump: t('nlLocalSignup.descriptionNjump'),
+    placeholder: t('nlLocalSignup.placeholder'),
+    button: {
+      getStarted: t('nlLocalSignup.button.getStarted'),
+      createProfile: t('nlLocalSignup.button.createProfile')
+    }
+  };
 
   @Event() nlLocalSignup: EventEmitter<string>;
   @Event() nlSignupNjump: EventEmitter<void>;
   // @Event() nlCheckSignup: EventEmitter<string>;
   @Event() fetchHandler: EventEmitter<boolean>;
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleSignup: t('nlLocalSignup.titleSignup'),
+        description: t('nlLocalSignup.description'),
+        descriptionNjump: t('nlLocalSignup.descriptionNjump'),
+        placeholder: t('nlLocalSignup.placeholder'),
+        button: {
+          getStarted: t('nlLocalSignup.button.getStarted'),
+          createProfile: t('nlLocalSignup.button.createProfile')
+        }
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   handleInputChange(event: Event) {
     state.nlSignup.signupName = (event.target as HTMLInputElement).value;
@@ -38,8 +69,8 @@ export class NlLocalSignup {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">{this.titleSignup}</h1>
-          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.signupNjump ? this.descriptionNjump : this.description}</p>
+          <h1 class="nl-title font-bold text-center text-2xl">{this.translations.titleSignup}</h1>
+          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.signupNjump ? this.translations.descriptionNjump : this.translations.description}</p>
         </div>
 
         <div class="max-w-72 mx-auto">
@@ -49,7 +80,7 @@ export class NlLocalSignup {
                 onInput={e => this.handleInputChange(e)}
                 type="text"
                 class="nl-input peer py-3 px-4 ps-11 block w-full border-transparent rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:border-transparent"
-                placeholder="Enter username"
+                placeholder={this.translations.placeholder}
                 value={state.nlSignup.signupName}
               />
               <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
@@ -75,7 +106,7 @@ export class NlLocalSignup {
             <p class="nl-error font-light text-center text-sm max-w-96 mx-auto">{state.error}</p>
           </div>
 
-          <button-base disabled={state.isLoading} onClick={e => this.handleCreateAccount(e)} titleBtn={this.signupNjump ? 'Get started' : 'Create profile'}>
+          <button-base disabled={state.isLoading} onClick={e => this.handleCreateAccount(e)} titleBtn={this.signupNjump ? this.translations.button.getStarted : this.translations.button.createProfile}>
             {state.isLoading ? (
               <span
                 slot="icon-start"
