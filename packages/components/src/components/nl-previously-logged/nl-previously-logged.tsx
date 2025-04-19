@@ -1,6 +1,7 @@
-import { Component, h, Fragment, Prop, Event, EventEmitter, Watch } from '@stencil/core';
+import { Component, h, Fragment, Prop, Event, EventEmitter, Watch, State } from '@stencil/core';
 import { CURRENT_MODULE, Info, RecentType } from '@/types';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-previously-logged',
@@ -8,8 +9,13 @@ import { state } from '@/store';
   shadow: false,
 })
 export class NlPreviouslyLogged {
-  @Prop() titlePage = 'Your profiles';
-  @Prop() description = 'Switch between active profiles or choose a recent one for fast login.';
+  @State() translations = {
+    title: t('nlPreviouslyLogged.title'),
+    description: t('nlPreviouslyLogged.description'),
+    activeProfiles: t('nlPreviouslyLogged.activeProfiles'),
+    recentProfiles: t('nlPreviouslyLogged.recentProfiles'),
+    addAnotherProfile: t('nlPreviouslyLogged.addAnotherProfile')
+  };
 
   @Prop() accounts: Info[] = [];
   @Prop() recents: RecentType[] = [];
@@ -17,6 +23,26 @@ export class NlPreviouslyLogged {
   @Event() nlSwitchAccount: EventEmitter<Info>;
   @Event() nlLoginRecentAccount: EventEmitter<RecentType>;
   @Event() nlRemoveRecent: EventEmitter<RecentType>;
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        title: t('nlPreviouslyLogged.title'),
+        description: t('nlPreviouslyLogged.description'),
+        activeProfiles: t('nlPreviouslyLogged.activeProfiles'),
+        recentProfiles: t('nlPreviouslyLogged.recentProfiles'),
+        addAnotherProfile: t('nlPreviouslyLogged.addAnotherProfile')
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   handleGoToWelcome() {
     state.path = [CURRENT_MODULE.WELCOME];
@@ -54,13 +80,13 @@ export class NlPreviouslyLogged {
     return (
       <Fragment>
         <div class="p-4 pt-0 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-4xl">{this.titlePage}</h1>
-          <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.description}</p>
+          <h1 class="nl-title font-bold text-center text-4xl">{this.translations.title}</h1>
+          <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.translations.description}</p>
         </div>
         <div class="p-4">
         {Boolean(this.accounts.length) && (
           <div class="max-w-96 mx-auto">
-            <p class="nl-description font-medium text-sm pb-1.5">Active profiles</p>
+            <p class="nl-description font-medium text-sm pb-1.5">{this.translations.activeProfiles}</p>
             <ul class="p-2 rounded-lg border border-blue-200 flex flex-col w-full gap-0.5">
               {this.accounts.map(el => {
                 const isShowImg = Boolean(el?.picture);
@@ -114,7 +140,7 @@ export class NlPreviouslyLogged {
 
         {Boolean(this.recents.length) && (
           <div class="max-w-96 mx-auto pt-5">
-            <p class="nl-description font-medium text-sm pb-1.5">Recent profiles</p>
+            <p class="nl-description font-medium text-sm pb-1.5">{this.translations.recentProfiles}</p>
             <ul class="p-2 rounded-lg border border-gray-200 flex flex-col w-full gap-0.5">
               {this.recents.map(el => {
                 const isShowImg = Boolean(el?.picture);
@@ -181,7 +207,7 @@ export class NlPreviouslyLogged {
           <p class="nl-footer font-light text-center text-sm max-w-96 mx-auto">
             You can also{' '}
             <span onClick={() => this.handleGoToWelcome()} class="cursor-pointer pb-3 text-blue-500">
-              add another profile
+              {this.translations.addAnotherProfile}
             </span>
           </p>
         </div>

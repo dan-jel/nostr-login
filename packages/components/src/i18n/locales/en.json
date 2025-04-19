@@ -164,5 +164,12 @@
     "textImport": "You will be prompted to import keys to the chosen service, and this website will connect to your keys.",
     "defaultProvider": "Default provider is a fine choice to start with.",
     "startImporting": "Start importing"
+  },
+  "nlPreviouslyLogged": {
+    "title": "Your profiles",
+    "description": "Switch between active profiles or choose a recent one for fast login.",
+    "activeProfiles": "Active profiles",
+    "recentProfiles": "Recent profiles",
+    "addAnotherProfile": "add another profile"
   }
 } 
