@@ -58,5 +58,13 @@
     "description": "Are you sure you want to log out?",
     "cancel": "Cancel",
     "confirm": "Logout"
+  },
+  "nlConnect": {
+    "titleWelcome": "Connect to key store",
+    "selectKeyStore": "Select key store:",
+    "advanced": "Advanced",
+    "userName": "User name",
+    "connectionString": "Connection string",
+    "bunkerUrl": "Bunker URL"
   }
 } 

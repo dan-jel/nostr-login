@@ -1,6 +1,7 @@
 import { Component, Event, EventEmitter, Fragment, h, Prop, State } from '@stencil/core';
 import { AuthMethod, ConnectionString, CURRENT_MODULE } from '@/types';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-connect',
@@ -8,13 +9,42 @@ import { state } from '@/store';
   shadow: false,
 })
 export class NlConnect {
-  @Prop() titleWelcome = 'Connect to key store';
   @Prop() authMethods: AuthMethod[] = [];
   @Prop() hasOTP: boolean = false;
   @Prop() connectionStringServices: ConnectionString[] = [];
 
   @State() isOpenAdvancedLogin: boolean = false;
   @Event() nlNostrConnect: EventEmitter<ConnectionString>;
+
+  @State() translations = {
+    titleWelcome: t('nlConnect.titleWelcome'),
+    selectKeyStore: t('nlConnect.selectKeyStore'),
+    advanced: t('nlConnect.advanced'),
+    userName: t('nlConnect.userName'),
+    connectionString: t('nlConnect.connectionString'),
+    bunkerUrl: t('nlConnect.bunkerUrl')
+  };
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleWelcome: t('nlConnect.titleWelcome'),
+        selectKeyStore: t('nlConnect.selectKeyStore'),
+        advanced: t('nlConnect.advanced'),
+        userName: t('nlConnect.userName'),
+        connectionString: t('nlConnect.connectionString'),
+        bunkerUrl: t('nlConnect.bunkerUrl')
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   handleChangeScreen(screen) {
     state.path = [...state.path, screen];
@@ -45,13 +75,13 @@ export class NlConnect {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-3xl">{this.titleWelcome}</h1>
+          <h1 class="nl-title font-bold text-center text-3xl">{this.translations.titleWelcome}</h1>
         </div>
 
         <div class="p-4">
           {Boolean(this.connectionStringServices.length) && (
             <div class="max-w-96 mx-auto pt-5">
-              <p class="nl-description font-medium text-sm pb-1.5">Select key store:</p>
+              <p class="nl-description font-medium text-sm pb-1.5">{this.translations.selectKeyStore}</p>
               <ul class="p-2 rounded-lg border border-gray-200 flex flex-col w-full gap-0.5">
                 {this.connectionStringServices.map(el => {
                   return (
@@ -98,7 +128,7 @@ export class NlConnect {
                 onClick={() => this.handleOpenAdvanced()}
                 class="text-blue-500 mt-3 decoration-dashed cursor-pointer inline-flex gap-2 items-center pb-1 border-dashed border-b-[1px] border-blue-500 text-sm font-light"
               >
-                Advanced
+                {this.translations.advanced}
                 <svg
                   class={arrowClass}
                   xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +152,7 @@ export class NlConnect {
           >
             {/* {this.hasExtension && !this.allowAuthMethod('extension') && this.renderSignInWithExtension()} */}
             {this.allowAuthMethod('connect') && (
-              <button-base titleBtn="User name" onClick={() => this.handleChangeScreen(CURRENT_MODULE.LOGIN)}>
+              <button-base titleBtn={this.translations.userName} onClick={() => this.handleChangeScreen(CURRENT_MODULE.LOGIN)}>
                 <svg
                   style={{ display: 'none' }}
                   slot="icon-start"
@@ -143,7 +173,7 @@ export class NlConnect {
             )}
 
             {this.allowAuthMethod('connect') && (
-              <button-base titleBtn="Connection string" onClick={() => this.handleConnectionString()}>
+              <button-base titleBtn={this.translations.connectionString} onClick={() => this.handleConnectionString()}>
                 <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path
                     stroke-linecap="round"
@@ -160,7 +190,7 @@ export class NlConnect {
             )}
 
             {this.allowAuthMethod('connect') && (
-              <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.LOGIN_BUNKER_URL)} titleBtn="Bunker URL">
+              <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.LOGIN_BUNKER_URL)} titleBtn={this.translations.bunkerUrl}>
                 <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path
                     stroke-linecap="round"
