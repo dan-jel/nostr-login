@@ -1,8 +1,7 @@
-import { Component, Fragment, h, Prop } from '@stencil/core';
+import { Component, Fragment, h, State } from '@stencil/core';
 import { CURRENT_MODULE } from '@/types';
 import { state } from '@/store';
 import { t, onLanguageChanged } from '@/i18n/config';
-import { TranslationKey } from '@/i18n/types';
 
 @Component({
   tag: 'nl-welcome',
@@ -10,23 +9,29 @@ import { TranslationKey } from '@/i18n/types';
   shadow: false,
 })
 export class NlWelcome {
-  @Prop() titleWelcome = t('welcome.title' as TranslationKey);
-  @Prop() description = t('welcome.description' as TranslationKey);
+  @State() translations = {
+    titleWelcome: t('welcome.title'),
+    description: t('welcome.description'),
+    signIn: t('welcome.signIn'),
+    signUp: t('welcome.signUp')
+  };
 
-  private unsubscribe: (() => void) | undefined;
+  private unsubscribeLanguageChange: () => void;
 
-  componentWillLoad() {
-    // Subscribe to language changes
-    this.unsubscribe = onLanguageChanged(() => {
-      this.titleWelcome = t('welcome.title' as TranslationKey);
-      this.description = t('welcome.description' as TranslationKey);
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleWelcome: t('welcome.title'),
+        description: t('welcome.description'),
+        signIn: t('welcome.signIn'),
+        signUp: t('welcome.signUp')
+      };
     });
   }
 
   disconnectedCallback() {
-    // Clean up subscription
-    if (this.unsubscribe) {
-      this.unsubscribe();
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
     }
   }
 
@@ -38,13 +43,13 @@ export class NlWelcome {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-4xl">{this.titleWelcome}</h1>
-          <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.description}</p>
+          <h1 class="nl-title font-bold text-center text-4xl">{this.translations.titleWelcome}</h1>
+          <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.translations.description}</p>
         </div>
 
         <div class="max-w-52 mx-auto pb-5">
           <div class="flex gap-3 flex-col mb-2">
-            <button-base titleBtn={t('welcome.signIn' as TranslationKey)} onClick={() => this.handleChangeScreen(CURRENT_MODULE.WELCOME_LOGIN)}>
+            <button-base titleBtn={this.translations.signIn} onClick={() => this.handleChangeScreen(CURRENT_MODULE.WELCOME_LOGIN)}>
               <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path
                   stroke-linecap="round"
@@ -57,7 +62,7 @@ export class NlWelcome {
 
           {/* <div class="nl-divider py-3 flex items-center text-xs uppercase before:flex-[1_1_0%] before:border-t before:me-6 after:flex-[1_1_0%] after:border-t  after:ms-6">Or</div> */}
 
-          <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.WELCOME_SIGNUP)} titleBtn={t('welcome.signUp' as TranslationKey)}>
+          <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.WELCOME_SIGNUP)} titleBtn={this.translations.signUp}>
             <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path
                 stroke-linecap="round"

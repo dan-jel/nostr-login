@@ -215,5 +215,11 @@
     "button": {
       "createProfile": "Create profile"
     }
+  },
+  "welcome": {
+    "title": "Welcome to Nostr Login",
+    "description": "Connect with your Nostr profile or create a new one to get started.",
+    "signIn": "Sign in",
+    "signUp": "Sign up"
   }
 } 
