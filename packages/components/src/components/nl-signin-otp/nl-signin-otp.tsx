@@ -1,5 +1,6 @@
-import { Component, h, State, Prop, Fragment, Event, EventEmitter } from '@stencil/core';
+import { Component, h, State, Event, EventEmitter } from '@stencil/core';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-signin-otp',
@@ -7,15 +8,44 @@ import { state } from '@/store';
   shadow: false,
 })
 export class NlSigninOtp {
-  @Prop() titleLogin = 'Log in with DM';
-  @Prop() description = 'Please enter your user name or npub, and we will send you a direct message with a one-time code.';
-  @Prop() titleLoginOTP = 'Enter the code';
-  @Prop() descriptionOTP = 'Please enter the one-time code we sent to you as a direct message on Nostr.';
   @State() isGood = false;
+  @State() translations = {
+    titleLogin: t('nlSigninOtp.titleLogin'),
+    description: t('nlSigninOtp.description'),
+    titleLoginOTP: t('nlSigninOtp.titleLoginOTP'),
+    descriptionOTP: t('nlSigninOtp.descriptionOTP'),
+    placeholder: {
+      code: t('nlSigninOtp.placeholder.code'),
+      username: t('nlSigninOtp.placeholder.username')
+    }
+  };
 
   @Event() nlLoginOTPUser: EventEmitter<string>;
   @Event() nlLoginOTPCode: EventEmitter<string>;
   @Event() nlCheckLogin: EventEmitter<string>;
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleLogin: t('nlSigninOtp.titleLogin'),
+        description: t('nlSigninOtp.description'),
+        titleLoginOTP: t('nlSigninOtp.titleLoginOTP'),
+        descriptionOTP: t('nlSigninOtp.descriptionOTP'),
+        placeholder: {
+          code: t('nlSigninOtp.placeholder.code'),
+          username: t('nlSigninOtp.placeholder.username')
+        }
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   handleInputChange(event: Event) {
     if (!state.isOTP) {
@@ -34,11 +64,9 @@ export class NlSigninOtp {
 
   render() {
     return (
-      <Fragment>
-        <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">{state.isOTP ? this.titleLoginOTP : this.titleLogin}</h1>
-          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{state.isOTP ? this.descriptionOTP : this.description}</p>
-        </div>
+      <div class="p-4 overflow-y-auto">
+        <h1 class="nl-title font-bold text-center text-2xl">{state.isOTP ? this.translations.titleLoginOTP : this.translations.titleLogin}</h1>
+        <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{state.isOTP ? this.translations.descriptionOTP : this.translations.description}</p>
 
         <div class="max-w-72 mx-auto">
           <div class="relative mb-2">
@@ -46,7 +74,7 @@ export class NlSigninOtp {
               onInput={e => this.handleInputChange(e)}
               type="text"
               class="nl-input peer py-3 px-4 ps-11 block w-full border-transparent rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:border-transparent"
-              placeholder={state.isOTP ? 'code from direct message' : 'npub or name@domain'}
+              placeholder={state.isOTP ? this.translations.placeholder.code : this.translations.placeholder.username}
               value={state.isOTP ? state.nlSigninOTP.code : state.nlSigninOTP.loginName}
             />
             <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
@@ -83,7 +111,7 @@ export class NlSigninOtp {
             )}
           </button-base>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

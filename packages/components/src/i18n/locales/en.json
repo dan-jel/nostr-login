@@ -192,5 +192,15 @@
     "titleLogin": "Connection string",
     "description": "Scan or copy the connection string with key store app",
     "waitingForConnection": "Waiting for connection"
+  },
+  "nlSigninOtp": {
+    "titleLogin": "Log in with DM",
+    "description": "Please enter your user name or npub, and we will send you a direct message with a one-time code.",
+    "titleLoginOTP": "Enter the code",
+    "descriptionOTP": "Please enter the one-time code we sent to you as a direct message on Nostr.",
+    "placeholder": {
+      "code": "code from direct message",
+      "username": "npub or name@domain"
+    }
   }
 } 
