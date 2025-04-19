@@ -1,4 +1,4 @@
-import { Component, Fragment, h, State } from '@stencil/core';
+import { Component, Fragment, h, State, Prop } from '@stencil/core';
 import { CURRENT_MODULE } from '@/types';
 import { state } from '@/store';
 import { t, onLanguageChanged } from '@/i18n/config';
@@ -9,9 +9,12 @@ import { t, onLanguageChanged } from '@/i18n/config';
   shadow: false,
 })
 export class NlWelcome {
+  @Prop() titleWelcome?: string;
+  @Prop() description?: string;
+
   @State() translations = {
-    titleWelcome: t('welcome.title'),
-    description: t('welcome.description'),
+    titleWelcome: this.titleWelcome || t('welcome.title'),
+    description: this.description || t('welcome.description'),
     signIn: t('welcome.signIn'),
     signUp: t('welcome.signUp'),
   };
@@ -21,8 +24,8 @@ export class NlWelcome {
   connectedCallback() {
     this.unsubscribeLanguageChange = onLanguageChanged(() => {
       this.translations = {
-        titleWelcome: t('welcome.title'),
-        description: t('welcome.description'),
+        titleWelcome: this.titleWelcome || t('welcome.title'),
+        description: this.description || t('welcome.description'),
         signIn: t('welcome.signIn'),
         signUp: t('welcome.signUp'),
       };
