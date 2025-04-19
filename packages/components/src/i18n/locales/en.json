@@ -202,5 +202,10 @@
       "code": "code from direct message",
       "username": "npub or name@domain"
     }
+  },
+  "nlSigninReadOnly": {
+    "titleLogin": "Log in to read only",
+    "description": "Please enter the user name or npub of any Nostr user.",
+    "placeholder": "npub or name@domain"
   }
 } 
