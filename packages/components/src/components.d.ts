@@ -14,6 +14,7 @@ export namespace Components {
         "darkMode": boolean;
         "disabled": boolean;
         "theme": NlTheme;
+        "titleBtn": string;
     }
     interface NlAuth {
         "accounts": Info[];
@@ -666,6 +667,7 @@ declare namespace LocalJSX {
         "darkMode"?: boolean;
         "disabled"?: boolean;
         "theme"?: NlTheme;
+        "titleBtn"?: string;
     }
     interface NlAuth {
         "accounts"?: Info[];
