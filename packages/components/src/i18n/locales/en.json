@@ -207,5 +207,13 @@
     "titleLogin": "Log in to read only",
     "description": "Please enter the user name or npub of any Nostr user.",
     "placeholder": "npub or name@domain"
+  },
+  "nlSignup": {
+    "titleSignup": "Create keys with key store",
+    "description": "Choose some username and a key store service.",
+    "placeholder": "Name",
+    "button": {
+      "createProfile": "Create profile"
+    }
   }
 } 
