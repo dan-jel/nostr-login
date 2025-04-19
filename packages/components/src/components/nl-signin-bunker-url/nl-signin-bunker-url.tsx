@@ -1,5 +1,6 @@
-import { Component, h, State, Prop, Fragment, Event, EventEmitter } from '@stencil/core';
+import { Component, h, State, Fragment, Event, EventEmitter } from '@stencil/core';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-signin-bunker-url',
@@ -7,22 +8,47 @@ import { state } from '@/store';
   shadow: false,
 })
 export class NlSigninBunkerUrl {
-  @Prop() titleLogin = 'Connect with bunker url';
-  @Prop() description = 'Please enter a bunker url provided by key store.';
   @State() isGood = false;
+  @State() translations = {
+    titleLogin: t('nlSigninBunkerUrl.titleLogin'),
+    description: t('nlSigninBunkerUrl.description'),
+    placeholder: t('nlSigninBunkerUrl.placeholder'),
+    button: {
+      connect: t('nlSigninBunkerUrl.button.connect')
+    }
+  };
 
   @Event() nlLogin: EventEmitter<string>;
   @Event() nlCheckLogin: EventEmitter<string>;
 
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleLogin: t('nlSigninBunkerUrl.titleLogin'),
+        description: t('nlSigninBunkerUrl.description'),
+        placeholder: t('nlSigninBunkerUrl.placeholder'),
+        button: {
+          connect: t('nlSigninBunkerUrl.button.connect')
+        }
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
+
   handleInputChange(event: Event) {
     state.nlSigninBunkerUrl.loginName = (event.target as HTMLInputElement).value;
-
     this.nlCheckLogin.emit((event.target as HTMLInputElement).value);
   }
 
   handleLogin(e: MouseEvent) {
     e.preventDefault();
-
     this.nlLogin.emit(state.nlSigninBunkerUrl.loginName);
   }
 
@@ -30,8 +56,8 @@ export class NlSigninBunkerUrl {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">{this.titleLogin}</h1>
-          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.description}</p>
+          <h1 class="nl-title font-bold text-center text-2xl">{this.translations.titleLogin}</h1>
+          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.translations.description}</p>
         </div>
 
         <div class="max-w-72 mx-auto">
@@ -40,7 +66,7 @@ export class NlSigninBunkerUrl {
               onInput={e => this.handleInputChange(e)}
               type="text"
               class="nl-input peer py-3 px-4 ps-11 block w-full border-transparent rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:border-transparent"
-              placeholder="bunker://..."
+              placeholder={this.translations.placeholder}
               value={state.nlSigninBunkerUrl.loginName}
             />
             <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
@@ -65,7 +91,7 @@ export class NlSigninBunkerUrl {
             <p class="nl-error font-light text-center text-sm max-w-96 mx-auto">{state.error}</p>
           </div>
 
-          <button-base titleBtn="Connect" disabled={state.isLoading} onClick={e => this.handleLogin(e)}>
+          <button-base titleBtn={this.translations.button.connect} disabled={state.isLoading} onClick={e => this.handleLogin(e)}>
             {state.isLoading ? (
               <span
                 slot="icon-start"

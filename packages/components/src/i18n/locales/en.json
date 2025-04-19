@@ -179,5 +179,13 @@
     "button": {
       "connect": "Connect"
     }
+  },
+  "nlSigninBunkerUrl": {
+    "titleLogin": "Connect with bunker url",
+    "description": "Please enter a bunker url provided by key store.",
+    "placeholder": "bunker://...",
+    "button": {
+      "connect": "Connect"
+    }
   }
 } 
