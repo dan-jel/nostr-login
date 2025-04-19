@@ -1,6 +1,7 @@
-import { Component, Fragment, h, Prop } from '@stencil/core';
+import { Component, Fragment, h, State } from '@stencil/core';
 import { CURRENT_MODULE } from '@/types';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-welcome-signup',
@@ -8,8 +9,35 @@ import { state } from '@/store';
   shadow: false,
 })
 export class NlWelcomeSignUp {
-  @Prop() titleWelcome = 'Sign up';
-  @Prop() description = 'Nostr profiles are based on cryptographic keys. You can create keys right here, or with a key storage app.';
+  @State() translations = {
+    titleWelcome: t('nlWelcomeSignup.titleWelcome'),
+    description: t('nlWelcomeSignup.description'),
+    buttons: {
+      createKeys: t('nlWelcomeSignup.buttons.createKeys'),
+      withKeyStore: t('nlWelcomeSignup.buttons.withKeyStore')
+    }
+  };
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleWelcome: t('nlWelcomeSignup.titleWelcome'),
+        description: t('nlWelcomeSignup.description'),
+        buttons: {
+          createKeys: t('nlWelcomeSignup.buttons.createKeys'),
+          withKeyStore: t('nlWelcomeSignup.buttons.withKeyStore')
+        }
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   handleChangeScreen(screen) {
     state.path = [...state.path, screen];
@@ -19,13 +47,13 @@ export class NlWelcomeSignUp {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-3xl">{this.titleWelcome}</h1>
-          <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.description}</p>
+          <h1 class="nl-title font-bold text-center text-3xl">{this.translations.titleWelcome}</h1>
+          <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.translations.description}</p>
         </div>
 
         <div class="max-w-52 mx-auto pb-5">
           <div class="flex gap-3 flex-col">
-            <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.LOCAL_SIGNUP)} titleBtn="Create keys">
+            <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.LOCAL_SIGNUP)} titleBtn={this.translations.buttons.createKeys}>
               <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path
                   stroke-linecap="round"
@@ -35,7 +63,7 @@ export class NlWelcomeSignUp {
               </svg>
             </button-base>
 
-            <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.SIGNUP)} titleBtn="With key store">
+            <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.SIGNUP)} titleBtn={this.translations.buttons.withKeyStore}>
               <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                 <path
                   stroke-linecap="round"

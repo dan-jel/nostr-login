@@ -234,5 +234,13 @@
       "noExtension": "No Nostr extension!",
       "useAdvanced": "Use advanced options."
     }
+  },
+  "nlWelcomeSignup": {
+    "titleWelcome": "Sign up",
+    "description": "Nostr profiles are based on cryptographic keys. You can create keys right here, or with a key storage app.",
+    "buttons": {
+      "createKeys": "Create keys",
+      "withKeyStore": "With key store"
+    }
   }
 } 
