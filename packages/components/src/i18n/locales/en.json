@@ -118,5 +118,27 @@
       "title": "Install browser extension!",
       "description": "Try <a>Alby</a>, <a>nos2x</a> or <a>Nostore</a>"
     }
+  },
+  "nlLoading": {
+    "connecting": {
+      "title": "Connecting...",
+      "text": "Establishing connection to your key storage."
+    },
+    "creating": {
+      "title": "Creating...",
+      "text": "Publishing your profile on Nostr."
+    },
+    "confirming": {
+      "title": "Confirming...",
+      "text": "Please confirm the connection in your key storage app."
+    },
+    "ready": {
+      "title": "Almost ready!",
+      "text": "Continue to confirm the connection to your key storage."
+    },
+    "buttons": {
+      "continue": "Continue",
+      "cancel": "Cancel"
+    }
   }
 } 
