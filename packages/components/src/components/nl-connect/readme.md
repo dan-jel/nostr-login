@@ -5,12 +5,11 @@
 
 ## Properties
 
-| Property                   | Attribute       | Description | Type                 | Default                  |
-| -------------------------- | --------------- | ----------- | -------------------- | ------------------------ |
-| `authMethods`              | --              |             | `AuthMethod[]`       | `[]`                     |
-| `connectionStringServices` | --              |             | `ConnectionString[]` | `[]`                     |
-| `hasOTP`                   | `has-o-t-p`     |             | `boolean`            | `false`                  |
-| `titleWelcome`             | `title-welcome` |             | `string`             | `'Connect to key store'` |
+| Property                   | Attribute   | Description | Type                 | Default |
+| -------------------------- | ----------- | ----------- | -------------------- | ------- |
+| `authMethods`              | --          |             | `AuthMethod[]`       | `[]`    |
+| `connectionStringServices` | --          |             | `ConnectionString[]` | `[]`    |
+| `hasOTP`                   | `has-o-t-p` |             | `boolean`            | `false` |
 
 
 ## Events

@@ -5,11 +5,9 @@
 
 ## Properties
 
-| Property           | Attribute           | Description | Type     | Default                                                   |
-| ------------------ | ------------------- | ----------- | -------- | --------------------------------------------------------- |
-| `connectionString` | `connection-string` |             | `string` | `''`                                                      |
-| `description`      | `description`       |             | `string` | `'Scan or copy the connection string with key store app'` |
-| `titleLogin`       | `title-login`       |             | `string` | `'Connection string'`                                     |
+| Property           | Attribute           | Description | Type     | Default |
+| ------------------ | ------------------- | ----------- | -------- | ------- |
+| `connectionString` | `connection-string` |             | `string` | `''`    |
 
 
 ## Events

@@ -3,14 +3,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property       | Attribute       | Description | Type     | Default                                                                                                        |
-| -------------- | --------------- | ----------- | -------- | -------------------------------------------------------------------------------------------------------------- |
-| `description`  | `description`   |             | `string` | `'Nostr profiles are based on cryptographic keys. You can create keys right here, or with a key storage app.'` |
-| `titleWelcome` | `title-welcome` |             | `string` | `'Sign up'`                                                                                                    |
-
-
 ## Dependencies
 
 ### Used by

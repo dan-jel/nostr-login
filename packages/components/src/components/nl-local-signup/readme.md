@@ -5,12 +5,9 @@
 
 ## Properties
 
-| Property           | Attribute           | Description | Type      | Default                                                  |
-| ------------------ | ------------------- | ----------- | --------- | -------------------------------------------------------- |
-| `description`      | `description`       |             | `string`  | `'Choose any username, you can always change it later.'` |
-| `descriptionNjump` | `description-njump` |             | `string`  | `'Proceed to creating your Nostr profile in a new tab.'` |
-| `signupNjump`      | `signup-njump`      |             | `boolean` | `false`                                                  |
-| `titleSignup`      | `title-signup`      |             | `string`  | `'Create Nostr profile'`                                 |
+| Property      | Attribute      | Description | Type      | Default |
+| ------------- | -------------- | ----------- | --------- | ------- |
+| `signupNjump` | `signup-njump` |             | `boolean` | `false` |
 
 
 ## Events

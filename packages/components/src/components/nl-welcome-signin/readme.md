@@ -5,12 +5,11 @@
 
 ## Properties
 
-| Property       | Attribute       | Description | Type           | Default    |
-| -------------- | --------------- | ----------- | -------------- | ---------- |
-| `authMethods`  | --              |             | `AuthMethod[]` | `[]`       |
-| `hasExtension` | `has-extension` |             | `boolean`      | `false`    |
-| `hasOTP`       | `has-o-t-p`     |             | `boolean`      | `false`    |
-| `titleWelcome` | `title-welcome` |             | `string`       | `'Log in'` |
+| Property       | Attribute       | Description | Type           | Default |
+| -------------- | --------------- | ----------- | -------------- | ------- |
+| `authMethods`  | --              |             | `AuthMethod[]` | `[]`    |
+| `hasExtension` | `has-extension` |             | `boolean`      | `false` |
+| `hasOTP`       | `has-o-t-p`     |             | `boolean`      | `false` |
 
 
 ## Events

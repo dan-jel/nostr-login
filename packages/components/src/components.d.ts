@@ -69,19 +69,14 @@ export namespace Components {
         "authMethods": AuthMethod[];
         "connectionStringServices": ConnectionString[];
         "hasOTP": boolean;
-        "titleWelcome": string;
     }
     interface NlDialog {
     }
     interface NlIframe {
-        "description": string;
         "iframeUrl": string;
-        "titleModal": string;
     }
     interface NlImportFlow {
         "services": ConnectionString[];
-        "titleImport": string;
-        "titleInfo": string;
     }
     interface NlInfo {
     }
@@ -91,25 +86,17 @@ export namespace Components {
         "path": string;
     }
     interface NlLocalSignup {
-        "description": string;
-        "descriptionNjump": string;
         "signupNjump": boolean;
-        "titleSignup": string;
     }
     interface NlLoginStatus {
         "info": RecentType | Info | undefined;
     }
     interface NlOtpMigrate {
         "services": ConnectionString[];
-        "textImport": string;
-        "titleImport": string;
-        "titleInfo": string;
     }
     interface NlPreviouslyLogged {
         "accounts": Info[];
-        "description": string;
         "recents": RecentType[];
-        "titlePage": string;
     }
     interface NlSelect {
         "darkMode": boolean;
@@ -118,46 +105,27 @@ export namespace Components {
         "theme": 'default' | 'ocean' | 'lemonade' | 'purple';
     }
     interface NlSignin {
-        "description": string;
-        "titleLogin": string;
     }
     interface NlSigninBunkerUrl {
-        "description": string;
-        "titleLogin": string;
     }
     interface NlSigninConnectionString {
         "connectionString": string;
-        "description": string;
-        "titleLogin": string;
     }
     interface NlSigninOtp {
-        "description": string;
-        "descriptionOTP": string;
-        "titleLogin": string;
-        "titleLoginOTP": string;
     }
     interface NlSigninReadOnly {
-        "description": string;
-        "titleLogin": string;
     }
     interface NlSignup {
         "bunkers": string;
-        "description": string;
-        "titleSignup": string;
     }
     interface NlWelcome {
-        "description": any;
-        "titleWelcome": any;
     }
     interface NlWelcomeSignin {
         "authMethods": AuthMethod[];
         "hasExtension": boolean;
         "hasOTP": boolean;
-        "titleWelcome": string;
     }
     interface NlWelcomeSignup {
-        "description": string;
-        "titleWelcome": string;
     }
 }
 export interface NlAuthCustomEvent<T> extends CustomEvent<T> {
@@ -738,22 +706,17 @@ declare namespace LocalJSX {
         "connectionStringServices"?: ConnectionString[];
         "hasOTP"?: boolean;
         "onNlNostrConnect"?: (event: NlConnectCustomEvent<ConnectionString>) => void;
-        "titleWelcome"?: string;
     }
     interface NlDialog {
     }
     interface NlIframe {
-        "description"?: string;
         "iframeUrl"?: string;
         "onNlCloseModal"?: (event: NlIframeCustomEvent<any>) => void;
-        "titleModal"?: string;
     }
     interface NlImportFlow {
         "onNlExportKeys"?: (event: NlImportFlowCustomEvent<void>) => void;
         "onNlImportAccount"?: (event: NlImportFlowCustomEvent<ConnectionString>) => void;
         "services"?: ConnectionString[];
-        "titleImport"?: string;
-        "titleInfo"?: string;
     }
     interface NlInfo {
     }
@@ -765,13 +728,10 @@ declare namespace LocalJSX {
         "path"?: string;
     }
     interface NlLocalSignup {
-        "description"?: string;
-        "descriptionNjump"?: string;
         "onFetchHandler"?: (event: NlLocalSignupCustomEvent<boolean>) => void;
         "onNlLocalSignup"?: (event: NlLocalSignupCustomEvent<string>) => void;
         "onNlSignupNjump"?: (event: NlLocalSignupCustomEvent<void>) => void;
         "signupNjump"?: boolean;
-        "titleSignup"?: string;
     }
     interface NlLoginStatus {
         "info"?: RecentType | Info | undefined;
@@ -779,18 +739,13 @@ declare namespace LocalJSX {
     interface NlOtpMigrate {
         "onNlImportAccount"?: (event: NlOtpMigrateCustomEvent<ConnectionString>) => void;
         "services"?: ConnectionString[];
-        "textImport"?: string;
-        "titleImport"?: string;
-        "titleInfo"?: string;
     }
     interface NlPreviouslyLogged {
         "accounts"?: Info[];
-        "description"?: string;
         "onNlLoginRecentAccount"?: (event: NlPreviouslyLoggedCustomEvent<RecentType>) => void;
         "onNlRemoveRecent"?: (event: NlPreviouslyLoggedCustomEvent<RecentType>) => void;
         "onNlSwitchAccount"?: (event: NlPreviouslyLoggedCustomEvent<Info>) => void;
         "recents"?: RecentType[];
-        "titlePage"?: string;
     }
     interface NlSelect {
         "darkMode"?: boolean;
@@ -800,60 +755,41 @@ declare namespace LocalJSX {
         "theme"?: 'default' | 'ocean' | 'lemonade' | 'purple';
     }
     interface NlSignin {
-        "description"?: string;
         "onNlCheckLogin"?: (event: NlSigninCustomEvent<string>) => void;
         "onNlLogin"?: (event: NlSigninCustomEvent<string>) => void;
-        "titleLogin"?: string;
     }
     interface NlSigninBunkerUrl {
-        "description"?: string;
         "onNlCheckLogin"?: (event: NlSigninBunkerUrlCustomEvent<string>) => void;
         "onNlLogin"?: (event: NlSigninBunkerUrlCustomEvent<string>) => void;
-        "titleLogin"?: string;
     }
     interface NlSigninConnectionString {
         "connectionString"?: string;
-        "description"?: string;
         "onNlNostrConnectDefault"?: (event: NlSigninConnectionStringCustomEvent<void>) => void;
-        "titleLogin"?: string;
     }
     interface NlSigninOtp {
-        "description"?: string;
-        "descriptionOTP"?: string;
         "onNlCheckLogin"?: (event: NlSigninOtpCustomEvent<string>) => void;
         "onNlLoginOTPCode"?: (event: NlSigninOtpCustomEvent<string>) => void;
         "onNlLoginOTPUser"?: (event: NlSigninOtpCustomEvent<string>) => void;
-        "titleLogin"?: string;
-        "titleLoginOTP"?: string;
     }
     interface NlSigninReadOnly {
-        "description"?: string;
         "onNlCheckLogin"?: (event: NlSigninReadOnlyCustomEvent<string>) => void;
         "onNlLoginReadOnly"?: (event: NlSigninReadOnlyCustomEvent<string>) => void;
-        "titleLogin"?: string;
     }
     interface NlSignup {
         "bunkers"?: string;
-        "description"?: string;
         "onFetchHandler"?: (event: NlSignupCustomEvent<boolean>) => void;
         "onNlCheckSignup"?: (event: NlSignupCustomEvent<string>) => void;
         "onNlSignup"?: (event: NlSignupCustomEvent<string>) => void;
-        "titleSignup"?: string;
     }
     interface NlWelcome {
-        "description"?: any;
-        "titleWelcome"?: any;
     }
     interface NlWelcomeSignin {
         "authMethods"?: AuthMethod[];
         "hasExtension"?: boolean;
         "hasOTP"?: boolean;
         "onNlLoginExtension"?: (event: NlWelcomeSigninCustomEvent<void>) => void;
-        "titleWelcome"?: string;
     }
     interface NlWelcomeSignup {
-        "description"?: string;
-        "titleWelcome"?: string;
     }
     interface IntrinsicElements {
         "button-base": ButtonBase;

@@ -3,14 +3,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property       | Attribute       | Description | Type  | Default                                      |
-| -------------- | --------------- | ----------- | ----- | -------------------------------------------- |
-| `description`  | `description`   |             | `any` | `t('welcome.description' as TranslationKey)` |
-| `titleWelcome` | `title-welcome` |             | `any` | `t('welcome.title' as TranslationKey)`       |
-
-
 ## Dependencies
 
 ### Used by

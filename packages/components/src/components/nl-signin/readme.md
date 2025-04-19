@@ -3,14 +3,6 @@
 <!-- Auto Generated Below -->
 
 
-## Properties
-
-| Property      | Attribute     | Description | Type     | Default                          |
-| ------------- | ------------- | ----------- | -------- | -------------------------------- |
-| `description` | `description` |             | `string` | `'Please enter your user name.'` |
-| `titleLogin`  | `title-login` |             | `string` | `'Connect to key store'`         |
-
-
 ## Events
 
 | Event          | Description | Type                  |

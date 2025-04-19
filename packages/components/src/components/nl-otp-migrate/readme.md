@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property   | Attribute  | Description | Type                 | Default |
-| ---------- | ---------- | ----------- | -------------------- | ------- |
-| `services` | --         |             | `ConnectionString[]` | `[]`    |
+| Property   | Attribute | Description | Type                 | Default |
+| ---------- | --------- | ----------- | -------------------- | ------- |
+| `services` | --        |             | `ConnectionString[]` | `[]`    |
 
 
 ## Events

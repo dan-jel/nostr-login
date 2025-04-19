@@ -5,11 +5,9 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                 | Default               |
-| ------------- | -------------- | ----------- | -------------------- | --------------------- |
-| `services`    | --             |             | `ConnectionString[]` | `[]`                  |
-| `titleImport` | `title-import` |             | `string`             | `'Choose a service'`  |
-| `titleInfo`   | `title-info`   |             | `string`             | `'Back up your keys'` |
+| Property   | Attribute | Description | Type                 | Default |
+| ---------- | --------- | ----------- | -------------------- | ------- |
+| `services` | --        |             | `ConnectionString[]` | `[]`    |
 
 
 ## Events

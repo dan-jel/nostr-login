@@ -5,11 +5,9 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type     | Default                                           |
-| ------------- | -------------- | ----------- | -------- | ------------------------------------------------- |
-| `bunkers`     | `bunkers`      |             | `string` | `'nsec.app,highlighter.com'`                      |
-| `description` | `description`  |             | `string` | `'Choose some username and a key store service.'` |
-| `titleSignup` | `title-signup` |             | `string` | `'Create keys with key store'`                    |
+| Property  | Attribute | Description | Type     | Default                      |
+| --------- | --------- | ----------- | -------- | ---------------------------- |
+| `bunkers` | `bunkers` |             | `string` | `'nsec.app,highlighter.com'` |
 
 
 ## Events

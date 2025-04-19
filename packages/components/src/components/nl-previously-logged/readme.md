@@ -5,12 +5,10 @@
 
 ## Properties
 
-| Property      | Attribute     | Description | Type           | Default                                                                   |
-| ------------- | ------------- | ----------- | -------------- | ------------------------------------------------------------------------- |
-| `accounts`    | --            |             | `Info[]`       | `[]`                                                                      |
-| `description` | `description` |             | `string`       | `'Switch between active profiles or choose a recent one for fast login.'` |
-| `recents`     | --            |             | `RecentType[]` | `[]`                                                                      |
-| `titlePage`   | `title-page`  |             | `string`       | `'Your profiles'`                                                         |
+| Property   | Attribute | Description | Type           | Default |
+| ---------- | --------- | ----------- | -------------- | ------- |
+| `accounts` | --        |             | `Info[]`       | `[]`    |
+| `recents`  | --        |             | `RecentType[]` | `[]`    |
 
 
 ## Events
