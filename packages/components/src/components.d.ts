@@ -63,7 +63,10 @@ export namespace Components {
     darkMode: boolean;
     theme: 'default' | 'ocean' | 'lemonade' | 'purple';
   }
-  interface NlChangeLanguage {}
+  interface NlChangeLanguage {
+    darkMode: boolean;
+    theme: NlTheme;
+  }
   interface NlConfirmLogout {}
   interface NlConnect {
     authMethods: AuthMethod[];
@@ -1025,7 +1028,9 @@ declare namespace LocalJSX {
     theme?: 'default' | 'ocean' | 'lemonade' | 'purple';
   }
   interface NlChangeLanguage {
+    darkMode?: boolean;
     onHandleLanguageChange?: (event: NlChangeLanguageCustomEvent<string>) => void;
+    theme?: NlTheme;
   }
   interface NlConfirmLogout {
     onHandleBackUpModal?: (event: NlConfirmLogoutCustomEvent<string>) => void;

@@ -2,6 +2,13 @@
 
 <!-- Auto Generated Below -->
 
+## Properties
+
+| Property   | Attribute   | Description | Type                                                       | Default     |
+| ---------- | ----------- | ----------- | ---------------------------------------------------------- | ----------- |
+| `darkMode` | `dark-mode` |             | `boolean`                                                  | `false`     |
+| `theme`    | `theme`     |             | `"crab" \| "default" \| "lemonade" \| "ocean" \| "purple"` | `'default'` |
+
 ## Events
 
 | Event                  | Description | Type                  |

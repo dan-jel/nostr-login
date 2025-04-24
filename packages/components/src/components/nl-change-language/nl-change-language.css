@@ -1,5 +1,5 @@
 .nl-select {
-  background-color: transparent;
+  background-color: var(--nl-bg-color);
   border: 1px solid transparent;
   color: var(--nl-text-color);
   transition: all 0.3s ease;
@@ -21,6 +21,7 @@
 
 .nl-select-option {
   transition: all 0.2s ease;
+  color: var(--nl-text-color);
 }
 
 .nl-select-option:hover {
