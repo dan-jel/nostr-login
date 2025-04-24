@@ -170,7 +170,7 @@
     "description": "Wechseln Sie zwischen aktiven Profilen oder wählen Sie ein kürzlich verwendetes für schnelles Anmelden.",
     "activeProfiles": "Aktive Profile",
     "recentProfiles": "Kürzlich verwendete Profile",
-    "addAnotherProfile": "ein weiteres Profil hinzufügen"
+    "addAnotherProfile": "Sie können auch <a>ein weiteres Profil hinzufügen</a>"
   },
   "nlSignin": {
     "titleLogin": "Mit Schlüsselspeicher verbinden",

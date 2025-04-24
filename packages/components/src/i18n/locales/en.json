@@ -170,7 +170,7 @@
     "description": "Switch between active profiles or choose a recent one for fast login.",
     "activeProfiles": "Active profiles",
     "recentProfiles": "Recent profiles",
-    "addAnotherProfile": "add another profile"
+    "addAnotherProfile": "You can also <a>add another profile</a>"
   },
   "nlSignin": {
     "titleLogin": "Connect to key store",

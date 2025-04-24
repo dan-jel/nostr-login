@@ -76,6 +76,22 @@ export class NlPreviouslyLogged {
     this.nlLoginRecentAccount.emit(el);
   }
 
+  private renderTextWithLinks(text: string) {
+    const parts = text.split(/(<a>.*?<\/a>)/);
+
+    return parts.map(part => {
+      if (part.startsWith('<a>') && part.endsWith('</a>')) {
+        const linkText = part.slice(3, -4);
+        return (
+          <span onClick={() => this.handleGoToWelcome()} class="cursor-pointer pb-3 text-blue-500">
+            {linkText}
+          </span>
+        );
+      }
+      return part;
+    });
+  }
+
   render() {
     return (
       <Fragment>
@@ -208,10 +224,7 @@ export class NlPreviouslyLogged {
         </div>
         <div class="p-4 overflow-y-auto">
           <p class="nl-footer font-light text-center text-sm max-w-96 mx-auto">
-            You can also{' '}
-            <span onClick={() => this.handleGoToWelcome()} class="cursor-pointer pb-3 text-blue-500">
-              {this.translations.addAnotherProfile}
-            </span>
+            {this.renderTextWithLinks(this.translations.addAnotherProfile)}
           </p>
         </div>
       </Fragment>
