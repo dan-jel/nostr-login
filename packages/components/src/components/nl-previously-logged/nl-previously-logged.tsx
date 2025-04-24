@@ -223,9 +223,7 @@ export class NlPreviouslyLogged {
           )}
         </div>
         <div class="p-4 overflow-y-auto">
-          <p class="nl-footer font-light text-center text-sm max-w-96 mx-auto">
-            {this.renderTextWithLinks(this.translations.addAnotherProfile)}
-          </p>
+          <p class="nl-footer font-light text-center text-sm max-w-96 mx-auto">{this.renderTextWithLinks(this.translations.addAnotherProfile)}</p>
         </div>
       </Fragment>
     );
