@@ -18,8 +18,8 @@ i18next.use(LanguageDetector).init({
     order: ['navigator', 'htmlTag'],
     caches: ['localStorage'],
     convertDetectedLanguage: (lng: string) => {
-      if (lng.startsWith('en')) return 'en';
-      return lng;
+      const [baseLanguage] = lng.split('-');
+      return baseLanguage;
     },
   },
 });
