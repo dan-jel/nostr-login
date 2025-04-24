@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property                   | Attribute              | Description | Type                                                       | Default                  |
@@ -30,7 +29,6 @@
 | `welcomeDescription`       | `welcome-description`  |             | `string`                                                   | `''`                     |
 | `welcomeTitle`             | `welcome-title`        |             | `string`                                                   | `''`                     |
 
-
 ## Events
 
 | Event                         | Description | Type                   |
@@ -38,7 +36,6 @@
 | `nlChangeDarkMode`            |             | `CustomEvent<boolean>` |
 | `nlCloseModal`                |             | `CustomEvent<any>`     |
 | `nlNostrConnectDefaultCancel` |             | `CustomEvent<void>`    |
-
 
 ## Dependencies
 
@@ -62,9 +59,11 @@
 - [nl-connect](../nl-connect)
 - [nl-previously-logged](../nl-previously-logged)
 - [nl-iframe](../nl-iframe)
+- [nl-change-language](../nl-change-language)
 - [nl-loading](../nl-loading)
 
 ### Graph
+
 ```mermaid
 graph TD;
   nl-auth --> nl-signin-otp
@@ -85,6 +84,7 @@ graph TD;
   nl-auth --> nl-connect
   nl-auth --> nl-previously-logged
   nl-auth --> nl-iframe
+  nl-auth --> nl-change-language
   nl-auth --> nl-loading
   nl-signin-otp --> button-base
   nl-welcome --> button-base
@@ -107,6 +107,6 @@ graph TD;
   style nl-auth fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

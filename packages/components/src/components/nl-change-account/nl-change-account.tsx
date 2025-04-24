@@ -1,5 +1,6 @@
 import { Component, h, Listen, Prop, State, Watch, Element, Event, EventEmitter } from '@stencil/core';
 import { Info } from '@/types';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-change-account',
@@ -16,9 +17,33 @@ export class NLChangeAccount {
   @Event() handleOpenWelcomeModal: EventEmitter<string>;
   @Event() handleSwitchAccount: EventEmitter<Info>;
 
+  @State() translations = {
+    switchProfile: t('nlChangeAccount.switchProfile'),
+    addProfile: t('nlChangeAccount.addProfile'),
+  };
+
+  private unsubscribeLanguageChange: () => void;
+
   buttonRef: HTMLButtonElement;
   ulRef: HTMLUListElement;
   wrapperRef: HTMLDivElement;
+
+  connectedCallback() {
+    this.themeState = this.theme;
+    this.mode = this.darkMode;
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        switchProfile: t('nlChangeAccount.switchProfile'),
+        addProfile: t('nlChangeAccount.addProfile'),
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   @Listen('click', { target: 'window' })
   handleWindowClick() {
@@ -51,11 +76,6 @@ export class NLChangeAccount {
     this.options = newValue;
   }
 
-  connectedCallback() {
-    this.themeState = this.theme;
-    this.mode = this.darkMode;
-  }
-
   calculateDropdownPosition() {
     if (this.isOpen && this.buttonRef) {
       const buttonRect = this.buttonRef.getBoundingClientRect();
@@ -86,7 +106,7 @@ export class NLChangeAccount {
             type="button"
             class="nl-select peer py-3 px-4 flex items-center w-full justify-between border-transparent rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:border-transparent"
           >
-            <span class="text-gray-500">Switch profile</span>
+            <span class="text-gray-500">{this.translations.switchProfile}</span>
             <svg
               class={arrowClass}
               xmlns="http://www.w3.org/2000/svg"
@@ -143,7 +163,7 @@ export class NLChangeAccount {
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                   </svg>
                 </div>
-                Add profile
+                {this.translations.addProfile}
               </div>
             </li>
           </ul>

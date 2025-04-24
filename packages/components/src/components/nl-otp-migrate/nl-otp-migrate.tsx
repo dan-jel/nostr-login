@@ -1,6 +1,7 @@
-import { Component, h, Fragment, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, h, Fragment, Prop, Event, EventEmitter, State } from '@stencil/core';
 import { state } from '@/store';
 import { ConnectionString } from '@/types';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-otp-migrate',
@@ -8,10 +9,35 @@ import { ConnectionString } from '@/types';
   shadow: false,
 })
 export class NlImportFlow {
-  @Prop({ mutable: true }) titleInfo = 'Import keys to storage service';
-  @Prop() titleImport = 'Choose a service';
-  @Prop() textImport = 'You will be prompted to import keys to the chosen service, and this website will connect to your keys.';
   @Prop() services: ConnectionString[] = [];
+
+  @State() translations = {
+    titleInfo: t('nlOtpMigrate.titleInfo'),
+    titleImport: t('nlOtpMigrate.titleImport'),
+    textImport: t('nlOtpMigrate.textImport'),
+    defaultProvider: t('nlOtpMigrate.defaultProvider'),
+    startImporting: t('nlOtpMigrate.startImporting'),
+  };
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleInfo: t('nlOtpMigrate.titleInfo'),
+        titleImport: t('nlOtpMigrate.titleImport'),
+        textImport: t('nlOtpMigrate.textImport'),
+        defaultProvider: t('nlOtpMigrate.defaultProvider'),
+        startImporting: t('nlOtpMigrate.startImporting'),
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   @Event() nlImportAccount: EventEmitter<ConnectionString>;
 
@@ -31,21 +57,21 @@ export class NlImportFlow {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">{this.titleImport}</h1>
-          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.textImport}</p>
+          <h1 class="nl-title font-bold text-center text-2xl">{this.translations.titleImport}</h1>
+          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.translations.textImport}</p>
         </div>
 
         <div class="max-w-72 mx-auto mb-5">
           <div class="mb-0.5">
             <nl-select onSelectDomain={e => this.handleDomainSelect(e)} selected={0} options={options}></nl-select>
           </div>
-          <p class="nl-title font-light text-sm mb-2">Default provider is a fine choice to start with.</p>
+          <p class="nl-title font-light text-sm mb-2">{this.translations.defaultProvider}</p>
 
           <div class="ps-4 pe-4 overflow-y-auto">
             <p class="nl-error font-light text-center text-sm max-w-96 mx-auto">{state.error}</p>
           </div>
 
-          <button-base disabled={state.isLoading} onClick={e => this.handleCreateAccount(e)} titleBtn="Start importing">
+          <button-base disabled={state.isLoading} onClick={e => this.handleCreateAccount(e)} titleBtn={this.translations.startImporting}>
             {state.isLoading ? (
               <span
                 slot="icon-start"

@@ -2,26 +2,25 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
-| Property       | Attribute       | Description | Type     | Default                                                                                           |
-| -------------- | --------------- | ----------- | -------- | ------------------------------------------------------------------------------------------------- |
-| `description`  | `description`   |             | `string` | `'This website is part of the Nostr network. Log in with your Nostr profile or sign up to join.'` |
-| `titleWelcome` | `title-welcome` |             | `string` | `'Welcome to Nostr!'`                                                                             |
-
+| Property       | Attribute       | Description | Type     | Default     |
+| -------------- | --------------- | ----------- | -------- | ----------- |
+| `description`  | `description`   |             | `string` | `undefined` |
+| `titleWelcome` | `title-welcome` |             | `string` | `undefined` |
 
 ## Dependencies
 
 ### Used by
 
- - [nl-auth](../nl-auth)
+- [nl-auth](../nl-auth)
 
 ### Depends on
 
 - [button-base](../button-base)
 
 ### Graph
+
 ```mermaid
 graph TD;
   nl-welcome --> button-base
@@ -29,6 +28,6 @@ graph TD;
   style nl-welcome fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_

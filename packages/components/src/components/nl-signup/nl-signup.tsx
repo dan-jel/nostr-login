@@ -1,5 +1,6 @@
 import { Component, h, Fragment, State, Prop, Event, EventEmitter, Watch } from '@stencil/core';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-signup',
@@ -7,15 +8,42 @@ import { state } from '@/store';
   shadow: false,
 })
 export class NlSignup {
-  @Prop() titleSignup = 'Create keys with key store';
-  @Prop() description = 'Choose some username and a key store service.';
   @Prop() bunkers: string = 'nsec.app,highlighter.com';
 
   @State() isAvailable = false;
+  @State() translations = {
+    titleSignup: t('nlSignup.titleSignup'),
+    description: t('nlSignup.description'),
+    placeholder: t('nlSignup.placeholder'),
+    button: {
+      createProfile: t('nlSignup.button.createProfile'),
+    },
+  };
 
   @Event() nlSignup: EventEmitter<string>;
   @Event() nlCheckSignup: EventEmitter<string>;
   @Event() fetchHandler: EventEmitter<boolean>;
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleSignup: t('nlSignup.titleSignup'),
+        description: t('nlSignup.description'),
+        placeholder: t('nlSignup.placeholder'),
+        button: {
+          createProfile: t('nlSignup.button.createProfile'),
+        },
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   formatServers(bunkers: string) {
     return bunkers.split(',').map(d => ({
@@ -53,8 +81,8 @@ export class NlSignup {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">{this.titleSignup}</h1>
-          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.description}</p>
+          <h1 class="nl-title font-bold text-center text-2xl">{this.translations.titleSignup}</h1>
+          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.translations.description}</p>
         </div>
 
         <div class="max-w-72 mx-auto">
@@ -63,7 +91,7 @@ export class NlSignup {
               onInput={e => this.handleInputChange(e)}
               type="text"
               class="nl-input peer py-3 px-4 ps-11 block w-full border-transparent rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:border-transparent"
-              placeholder="Name"
+              placeholder={this.translations.placeholder}
               value={state.nlSignup.signupName}
             />
             <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">
@@ -100,7 +128,7 @@ export class NlSignup {
             <p class="nl-error font-light text-center text-sm max-w-96 mx-auto">{state.error}</p>
           </div>
 
-          <button-base disabled={state.isLoading} onClick={e => this.handleCreateAccount(e)} titleBtn="Create profile">
+          <button-base disabled={state.isLoading} onClick={e => this.handleCreateAccount(e)} titleBtn={this.translations.button.createProfile}>
             {state.isLoading ? (
               <span
                 slot="icon-start"

@@ -1,4 +1,4 @@
-# nl-button
+# nl-change-language
 
 <!-- Auto Generated Below -->
 
@@ -7,22 +7,26 @@
 | Property   | Attribute   | Description | Type                                                       | Default     |
 | ---------- | ----------- | ----------- | ---------------------------------------------------------- | ----------- |
 | `darkMode` | `dark-mode` |             | `boolean`                                                  | `false`     |
-| `disabled` | `disabled`  |             | `boolean`                                                  | `false`     |
 | `theme`    | `theme`     |             | `"crab" \| "default" \| "lemonade" \| "ocean" \| "purple"` | `'default'` |
-| `titleBtn` | `title-btn` |             | `string`                                                   | `''`        |
+
+## Events
+
+| Event                  | Description | Type                  |
+| ---------------------- | ----------- | --------------------- |
+| `handleLanguageChange` |             | `CustomEvent<string>` |
 
 ## Dependencies
 
-### Depends on
+### Used by
 
-- [button-base](../button-base)
+- [nl-auth](../nl-auth)
 
 ### Graph
 
 ```mermaid
 graph TD;
-  nl-button --> button-base
-  style nl-button fill:#f9f,stroke:#333,stroke-width:4px
+  nl-auth --> nl-change-language
+  style nl-change-language fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ---

@@ -1,5 +1,6 @@
-import { Component, h, State, Prop, Fragment, Event, EventEmitter } from '@stencil/core';
+import { Component, h, State, Event, EventEmitter, Fragment } from '@stencil/core';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-signin-read-only',
@@ -7,16 +8,37 @@ import { state } from '@/store';
   shadow: false,
 })
 export class NlSigninReadOnly {
-  @Prop() titleLogin = 'Log in to read only';
-  @Prop() description = 'Please enter the user name or npub of any Nostr user.';
+  @State() translations = {
+    titleLogin: t('nlSigninReadOnly.titleLogin'),
+    description: t('nlSigninReadOnly.description'),
+    placeholder: t('nlSigninReadOnly.placeholder'),
+  };
   @State() isGood = false;
+
+  private unsubscribeLanguageChange: () => void;
 
   @Event() nlLoginReadOnly: EventEmitter<string>;
   @Event() nlCheckLogin: EventEmitter<string>;
 
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleLogin: t('nlSigninReadOnly.titleLogin'),
+        description: t('nlSigninReadOnly.description'),
+        placeholder: t('nlSigninReadOnly.placeholder'),
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
+
   handleInputChange(event: Event) {
     state.nlSigninReadOnly.loginName = (event.target as HTMLInputElement).value;
-    this.nlCheckLogin.emit((event.target as HTMLInputElement).value); // .emit(this.loginName);
+    this.nlCheckLogin.emit((event.target as HTMLInputElement).value);
   }
 
   handleLogin(e: MouseEvent) {
@@ -28,8 +50,8 @@ export class NlSigninReadOnly {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-2xl">{this.titleLogin}</h1>
-          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.description}</p>
+          <h1 class="nl-title font-bold text-center text-2xl">{this.translations.titleLogin}</h1>
+          <p class="nl-description font-light text-center text-sm pt-2 max-w-96 mx-auto">{this.translations.description}</p>
         </div>
 
         <div class="max-w-72 mx-auto">
@@ -38,7 +60,7 @@ export class NlSigninReadOnly {
               onInput={e => this.handleInputChange(e)}
               type="text"
               class="nl-input peer py-3 px-4 ps-11 block w-full border-transparent rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:border-transparent"
-              placeholder="npub or name@domain"
+              placeholder={this.translations.placeholder}
               value={state.nlSigninReadOnly.loginName}
             />
             <div class="absolute inset-y-0 start-0 flex items-center pointer-events-none ps-4 peer-disabled:opacity-50 peer-disabled:pointer-events-none">

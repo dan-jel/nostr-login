@@ -1,6 +1,7 @@
-import { Component, Event, EventEmitter, Fragment, h, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, Fragment, h, Prop, State } from '@stencil/core';
 import { AuthMethod, CURRENT_MODULE } from '@/types';
 import { state } from '@/store';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-welcome-signin',
@@ -8,11 +9,50 @@ import { state } from '@/store';
   shadow: false,
 })
 export class NlWelcomeSignIn {
-  @Prop() titleWelcome = 'Log in';
   @Prop() hasExtension: boolean = false;
   @Prop() authMethods: AuthMethod[] = [];
   @Prop() hasOTP: boolean = false;
   @Event() nlLoginExtension: EventEmitter<void>;
+
+  @State() translations = {
+    titleWelcome: t('nlWelcomeSignin.titleWelcome'),
+    buttons: {
+      withExtension: t('nlWelcomeSignin.buttons.withExtension'),
+      connect: t('nlWelcomeSignin.buttons.connect'),
+      readOnly: t('nlWelcomeSignin.buttons.readOnly'),
+      oneTimeCode: t('nlWelcomeSignin.buttons.oneTimeCode'),
+    },
+    messages: {
+      noExtension: t('nlWelcomeSignin.messages.noExtension'),
+      useAdvanced: t('nlWelcomeSignin.messages.useAdvanced'),
+    },
+  };
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        titleWelcome: t('nlWelcomeSignin.titleWelcome'),
+        buttons: {
+          withExtension: t('nlWelcomeSignin.buttons.withExtension'),
+          connect: t('nlWelcomeSignin.buttons.connect'),
+          readOnly: t('nlWelcomeSignin.buttons.readOnly'),
+          oneTimeCode: t('nlWelcomeSignin.buttons.oneTimeCode'),
+        },
+        messages: {
+          noExtension: t('nlWelcomeSignin.messages.noExtension'),
+          useAdvanced: t('nlWelcomeSignin.messages.useAdvanced'),
+        },
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   handleChangeScreen(screen) {
     state.path = [...state.path, screen];
@@ -25,15 +65,15 @@ export class NlWelcomeSignIn {
 
   renderSignInWithExtension() {
     return (
-        <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.EXTENSION)} titleBtn="With extension">
-          <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Z"
-            />
-          </svg>
-        </button-base>
+      <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.EXTENSION)} titleBtn={this.translations.buttons.withExtension}>
+        <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0h18M5.25 6h.008v.008H5.25V6ZM7.5 6h.008v.008H7.5V6Zm2.25 0h.008v.008H9.75V6Z"
+          />
+        </svg>
+      </button-base>
     );
   }
 
@@ -41,13 +81,13 @@ export class NlWelcomeSignIn {
     return (
       <Fragment>
         <div class="p-4 overflow-y-auto">
-          <h1 class="nl-title font-bold text-center text-3xl">{this.titleWelcome}</h1>
+          <h1 class="nl-title font-bold text-center text-3xl">{this.translations.titleWelcome}</h1>
         </div>
 
         <div class="max-w-52 mx-auto pb-5">
           <div class="flex gap-3 flex-col">
             {this.allowAuthMethod('connect') && (
-              <button-base titleBtn="Connect" onClick={() => this.handleChangeScreen(CURRENT_MODULE.CONNECT)}>
+              <button-base titleBtn={this.translations.buttons.connect} onClick={() => this.handleChangeScreen(CURRENT_MODULE.CONNECT)}>
                 <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path
                     stroke-linecap="round"
@@ -59,7 +99,7 @@ export class NlWelcomeSignIn {
             )}
 
             {this.allowAuthMethod('readOnly') && (
-              <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.LOGIN_READ_ONLY)} titleBtn="Read only">
+              <button-base onClick={() => this.handleChangeScreen(CURRENT_MODULE.LOGIN_READ_ONLY)} titleBtn={this.translations.buttons.readOnly}>
                 <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path
                     stroke-linecap="round"
@@ -72,18 +112,20 @@ export class NlWelcomeSignIn {
             )}
 
             {this.hasOTP && this.allowAuthMethod('otp') && (
-              <button-base titleBtn="One-time code" onClick={() => this.handleChangeScreen(CURRENT_MODULE.LOGIN_OTP)}>
+              <button-base titleBtn={this.translations.buttons.oneTimeCode} onClick={() => this.handleChangeScreen(CURRENT_MODULE.LOGIN_OTP)}>
                 <svg style={{ display: 'none' }} slot="icon-start" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                 </svg>
               </button-base>
             )}
 
-              {this.hasExtension && this.allowAuthMethod('extension') && this.renderSignInWithExtension()}
-              {!this.allowAuthMethod('connect') && !this.hasExtension && <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">No Nostr extension!</p>}
-              {!this.allowAuthMethod('connect') && this.hasExtension && !this.allowAuthMethod('extension') && (
-                <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">Use advanced options.</p>
-              )}
+            {this.hasExtension && this.allowAuthMethod('extension') && this.renderSignInWithExtension()}
+            {!this.allowAuthMethod('connect') && !this.hasExtension && (
+              <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.translations.messages.noExtension}</p>
+            )}
+            {!this.allowAuthMethod('connect') && this.hasExtension && !this.allowAuthMethod('extension') && (
+              <p class="nl-description font-light text-center text-lg pt-2 max-w-96 mx-auto">{this.translations.messages.useAdvanced}</p>
+            )}
           </div>
         </div>
       </Fragment>

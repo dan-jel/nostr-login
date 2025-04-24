@@ -1,5 +1,6 @@
 import { Component, Event, EventEmitter, Fragment, h, Prop, State, Watch } from '@stencil/core';
 import { BannerNotify, BannerNotifyMode, Info, METHOD_MODULE, NlTheme } from '@/types';
+import { t, onLanguageChanged } from '@/i18n/config';
 
 @Component({
   tag: 'nl-banner',
@@ -19,6 +20,26 @@ export class NlBanner {
   @Prop({ mutable: true }) accounts: Info[] = [];
 
   @State() isUserImgError = false;
+  @State() translations = {
+    logo: {
+      nostr: t('nlBanner.logo.nostr'),
+      login: t('nlBanner.logo.login'),
+    },
+    buttons: {
+      close: t('nlBanner.buttons.close'),
+      confirm: t('nlBanner.buttons.confirm'),
+      backupProfile: t('nlBanner.buttons.backupProfile'),
+      login: t('nlBanner.buttons.login'),
+      signup: t('nlBanner.buttons.signup'),
+      logout: t('nlBanner.buttons.logout'),
+    },
+    messages: {
+      timeout: t('nlBanner.messages.timeout'),
+      confirmation: t('nlBanner.messages.confirmation'),
+      goTo: t('nlBanner.messages.goTo'),
+      profileWarning: t('nlBanner.messages.profileWarning'),
+    },
+  };
 
   @State() domain: string = '';
   @State() mode: BannerNotifyMode = '';
@@ -32,6 +53,39 @@ export class NlBanner {
   @Event() handleOpenWelcomeModal: EventEmitter<string>;
   @Event() handleConfirmLogout: EventEmitter<string>;
   @Event() handleImportModal: EventEmitter<string>;
+
+  private unsubscribeLanguageChange: () => void;
+
+  connectedCallback() {
+    this.unsubscribeLanguageChange = onLanguageChanged(() => {
+      this.translations = {
+        logo: {
+          nostr: t('nlBanner.logo.nostr'),
+          login: t('nlBanner.logo.login'),
+        },
+        buttons: {
+          close: t('nlBanner.buttons.close'),
+          confirm: t('nlBanner.buttons.confirm'),
+          backupProfile: t('nlBanner.buttons.backupProfile'),
+          login: t('nlBanner.buttons.login'),
+          signup: t('nlBanner.buttons.signup'),
+          logout: t('nlBanner.buttons.logout'),
+        },
+        messages: {
+          timeout: t('nlBanner.messages.timeout'),
+          confirmation: t('nlBanner.messages.confirmation'),
+          goTo: t('nlBanner.messages.goTo'),
+          profileWarning: t('nlBanner.messages.profileWarning'),
+        },
+      };
+    });
+  }
+
+  disconnectedCallback() {
+    if (this.unsubscribeLanguageChange) {
+      this.unsubscribeLanguageChange();
+    }
+  }
 
   @Watch('notify')
   watchNotifyHandler(notify: BannerNotify) {
@@ -158,7 +212,7 @@ export class NlBanner {
                 </svg>
                 {this.isOpen && (
                   <span class="px-2">
-                    <b>Nostr</b> Login
+                    <b>{this.translations.logo.nostr}</b> {this.translations.logo.login}
                   </span>
                 )}
               </div>
@@ -174,7 +228,7 @@ export class NlBanner {
           type="button"
           class={`${this.isOpen ? 'z-20' : 'z-0'} nl-action-button absolute right-2 top-2 z-0 show-slow grid place-items-center w-7 h-7 text-sm font-semibold rounded-full border border-transparent`}
         >
-          <span class="sr-only">Close</span>
+          <span class="sr-only">{this.translations.buttons.close}</span>
           <svg
             class="flex-shrink-0 w-5 h-5"
             xmlns="http://www.w3.org/2000/svg"
@@ -205,7 +259,7 @@ export class NlBanner {
                 </svg>
               </div>
               <p class="mb-2 text-center max-w-40 min-w-40 mx-auto">
-                {this.mode === 'timeout' ? 'Keys not responding, check your key storage app' : `Confirmation required at ${this.domain}`}
+                {this.mode === 'timeout' ? this.translations.messages.timeout : this.translations.messages.confirmation.replace('{{domain}}', this.domain)}
               </p>
 
               {this.mode === 'timeout' ? (
@@ -215,12 +269,12 @@ export class NlBanner {
                   target="_blank"
                   class="nl-button text-nowrap py-2.5 px-3 w-full inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                 >
-                  Go to {this.domain}
+                  {this.translations.messages.goTo.replace('{{domain}}', this.domain)}
                 </a>
               ) : this.mode === 'rebind' ? (
                 <iframe src={this.url} width={'180'} height={'80'} frameBorder={'0'}></iframe>
               ) : (
-                <button-base onClick={() => this.handleConfirm()} titleBtn="Confirm" />
+                <button-base onClick={() => this.handleConfirm()} titleBtn={this.translations.buttons.confirm} />
               )}
             </div>
           ) : (
@@ -229,9 +283,9 @@ export class NlBanner {
                 {this.titleBanner && <p class="mb-2 text-center show-slow max-w-40 min-w-40 mx-auto">{this.titleBanner}</p>}
                 {isTemporary && (
                   <Fragment>
-                    {!isBackupKey && <p class="mb-2 text-center show-slow text-red-400 max-w-40 min-w-40 mx-auto">Your profile may be lost if you close this tab</p>}
+                    {!isBackupKey && <p class="mb-2 text-center show-slow text-red-400 max-w-40 min-w-40 mx-auto">{this.translations.messages.profileWarning}</p>}
                     <div class="mb-2">
-                      <button-base onClick={() => this.handleImport()} theme="lemonade" titleBtn="Back up profile" />
+                      <button-base onClick={() => this.handleImport()} theme="lemonade" titleBtn={this.translations.buttons.backupProfile} />
                     </div>
                   </Fragment>
                 )}
@@ -248,7 +302,7 @@ export class NlBanner {
                     )} */}
                 {!this.userInfo ? (
                   <div>
-                    <button-base onClick={() => this.handleLogin()} titleBtn="Log in">
+                    <button-base onClick={() => this.handleLogin()} titleBtn={this.translations.buttons.login}>
                       <svg
                         style={{ display: 'none' }}
                         slot="icon-start"
@@ -266,7 +320,7 @@ export class NlBanner {
                         />
                       </svg>
                     </button-base>
-                    <button-base onClick={() => this.handleSignup()} titleBtn="Sign up">
+                    <button-base onClick={() => this.handleSignup()} titleBtn={this.translations.buttons.signup}>
                       <svg
                         style={{ display: 'none' }}
                         slot="icon-start"
@@ -286,7 +340,7 @@ export class NlBanner {
                     </button-base>
                   </div>
                 ) : (
-                  <button-base onClick={() => this.handleLogout()} titleBtn="Log out" />
+                  <button-base onClick={() => this.handleLogout()} titleBtn={this.translations.buttons.logout} />
                 )}
               </div>
             </div>

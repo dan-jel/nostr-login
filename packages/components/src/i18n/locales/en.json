@@ -1,0 +1,246 @@
+{
+  "buttonBase": {
+    "defaultTitle": "Open modal"
+  },
+  "nlAuth": {
+    "logo": {
+      "nostr": "Nostr",
+      "login": "Login"
+    },
+    "buttons": {
+      "changeTheme": "Change theme",
+      "info": "Info",
+      "close": "Close",
+      "back": "Back"
+    },
+    "footer": {
+      "existingProfile": {
+        "prefix": "If you already have a profile please",
+        "link": "log in",
+        "suffix": "."
+      },
+      "noProfile": {
+        "prefix": "If you don't have a profile please",
+        "link": "sign up",
+        "suffix": "."
+      }
+    }
+  },
+  "nlBanner": {
+    "logo": {
+      "nostr": "Nostr",
+      "login": "Login"
+    },
+    "buttons": {
+      "close": "Close",
+      "confirm": "Confirm",
+      "backupProfile": "Back up profile",
+      "login": "Log in",
+      "signup": "Sign up",
+      "logout": "Log out"
+    },
+    "messages": {
+      "timeout": "Keys not responding, check your key storage app",
+      "confirmation": "Confirmation required at {{domain}}",
+      "goTo": "Go to {{domain}}",
+      "profileWarning": "Your profile may be lost if you close this tab"
+    }
+  },
+  "nlButton": {
+    "defaultTitle": "Open modal"
+  },
+  "nlChangeAccount": {
+    "switchProfile": "Switch profile",
+    "addProfile": "Add profile"
+  },
+  "nlConfirmLogout": {
+    "title": "Logout",
+    "description": "Are you sure you want to log out?",
+    "cancel": "Cancel",
+    "confirm": "Logout"
+  },
+  "nlConnect": {
+    "titleWelcome": "Connect to key store",
+    "selectKeyStore": "Select key store:",
+    "advanced": "Advanced",
+    "userName": "User name",
+    "connectionString": "Connection string",
+    "bunkerUrl": "Bunker URL"
+  },
+  "nlIframe": {
+    "titleModal": "Confirm",
+    "description": "Your profile keys are stored in this browser tab and will be deleted if you log out, and your profile will be inaccessible."
+  },
+  "nlImportFlow": {
+    "titleInfo": "Back up your keys",
+    "titleImport": "Choose a service",
+    "description": {
+      "intro": "Nostr profiles are controlled by cryptographic keys.",
+      "warning": "Your keys are currently only stored in this browser tab, and may be lost if you close it.",
+      "backup": "You should backup your keys.",
+      "recommendation": "We recommend to import your keys into a key store service, to protect them and to use with other apps."
+    },
+    "buttons": {
+      "importToKeyStore": "Import to key store",
+      "exportKeys": "Export keys",
+      "copyToClipboard": "Copy to clipboard",
+      "copied": "Copied!",
+      "startImporting": "Start importing"
+    },
+    "keyExport": {
+      "title": "Key export",
+      "description": {
+        "copy": "Copy your keys and store them in a safe place, like a password manager.",
+        "signIn": "You can sign into other Nostr apps by pasting your keys into them.",
+        "warning": "Your keys must be kept secret, never share them with anyone."
+      }
+    },
+    "serviceSelection": {
+      "description": "Your Nostr keys will be imported into the service you choose. You will manage your keys on their website.",
+      "defaultProvider": "Default provider is a fine choice to start with."
+    }
+  },
+  "nlInfo": {
+    "title": {
+      "nostr": "Nostr",
+      "login": "Login"
+    },
+    "version": "Version: {{version}}",
+    "description": {
+      "learnMore": "Learn more about Nostr <a>here</a>.",
+      "openSource": "This is an <a>open-source</a> tool by <a>Nostr.Band</a>."
+    }
+  },
+  "nlInfoExtension": {
+    "signingIn": "Signing in...",
+    "loading": "loading",
+    "installExtension": {
+      "title": "Install browser extension!",
+      "description": "Try <a>Alby</a>, <a>nos2x</a> or <a>Nostore</a>"
+    }
+  },
+  "nlLoading": {
+    "connecting": {
+      "title": "Connecting...",
+      "text": "Establishing connection to your key storage."
+    },
+    "creating": {
+      "title": "Creating...",
+      "text": "Publishing your profile on Nostr."
+    },
+    "confirming": {
+      "title": "Confirming...",
+      "text": "Please confirm the connection in your key storage app."
+    },
+    "ready": {
+      "title": "Almost ready!",
+      "text": "Continue to confirm the connection to your key storage."
+    },
+    "buttons": {
+      "continue": "Continue",
+      "cancel": "Cancel"
+    }
+  },
+  "nlLocalSignup": {
+    "titleSignup": "Create Nostr profile",
+    "description": "Choose any username, you can always change it later.",
+    "descriptionNjump": "Proceed to creating your Nostr profile in a new tab.",
+    "placeholder": "Enter username",
+    "button": {
+      "getStarted": "Get started",
+      "createProfile": "Create profile"
+    }
+  },
+  "nlLoginStatus": {
+    "extension": "Extension",
+    "readOnly": "Read only",
+    "connect": "Connect",
+    "local": "Temporary",
+    "otp": "Delegated"
+  },
+  "nlOtpMigrate": {
+    "titleInfo": "Import keys to storage service",
+    "titleImport": "Choose a service",
+    "textImport": "You will be prompted to import keys to the chosen service, and this website will connect to your keys.",
+    "defaultProvider": "Default provider is a fine choice to start with.",
+    "startImporting": "Start importing"
+  },
+  "nlPreviouslyLogged": {
+    "title": "Your profiles",
+    "description": "Switch between active profiles or choose a recent one for fast login.",
+    "activeProfiles": "Active profiles",
+    "recentProfiles": "Recent profiles",
+    "addAnotherProfile": "You can also <a>add another profile</a>"
+  },
+  "nlSignin": {
+    "titleLogin": "Connect to key store",
+    "description": "Please enter your user name.",
+    "placeholder": "name@domain.com",
+    "button": {
+      "connect": "Connect"
+    }
+  },
+  "nlSigninBunkerUrl": {
+    "titleLogin": "Connect with bunker url",
+    "description": "Please enter a bunker url provided by key store.",
+    "placeholder": "bunker://...",
+    "button": {
+      "connect": "Connect"
+    }
+  },
+  "nlSigninConnectionString": {
+    "titleLogin": "Connection string",
+    "description": "Scan or copy the connection string with key store app",
+    "waitingForConnection": "Waiting for connection"
+  },
+  "nlSigninOtp": {
+    "titleLogin": "Log in with DM",
+    "description": "Please enter your user name or npub, and we will send you a direct message with a one-time code.",
+    "titleLoginOTP": "Enter the code",
+    "descriptionOTP": "Please enter the one-time code we sent to you as a direct message on Nostr.",
+    "placeholder": {
+      "code": "code from direct message",
+      "username": "npub or name@domain"
+    }
+  },
+  "nlSigninReadOnly": {
+    "titleLogin": "Log in to read only",
+    "description": "Please enter the user name or npub of any Nostr user.",
+    "placeholder": "npub or name@domain"
+  },
+  "nlSignup": {
+    "titleSignup": "Create keys with key store",
+    "description": "Choose some username and a key store service.",
+    "placeholder": "Name",
+    "button": {
+      "createProfile": "Create profile"
+    }
+  },
+  "welcome": {
+    "title": "Welcome to Nostr Login",
+    "description": "Connect with your Nostr profile or create a new one to get started.",
+    "signIn": "Sign in",
+    "signUp": "Sign up"
+  },
+  "nlWelcomeSignin": {
+    "titleWelcome": "Log in",
+    "buttons": {
+      "withExtension": "With extension",
+      "connect": "Connect",
+      "readOnly": "Read only",
+      "oneTimeCode": "One-time code"
+    },
+    "messages": {
+      "noExtension": "No Nostr extension!",
+      "useAdvanced": "Use advanced options."
+    }
+  },
+  "nlWelcomeSignup": {
+    "titleWelcome": "Sign up",
+    "description": "Nostr profiles are based on cryptographic keys. You can create keys right here, or with a key storage app.",
+    "buttons": {
+      "createKeys": "Create keys",
+      "withKeyStore": "With key store"
+    }
+  }
+}

@@ -2,7 +2,6 @@
 
 <!-- Auto Generated Below -->
 
-
 ## Properties
 
 | Property      | Attribute      | Description | Type                                                       | Default     |
@@ -17,7 +16,6 @@
 | `titleBanner` | `title-banner` |             | `string`                                                   | `''`        |
 | `userInfo`    | --             |             | `Info`                                                     | `null`      |
 
-
 ## Events
 
 | Event                             | Description | Type                  |
@@ -30,7 +28,6 @@
 | `handleNotifyConfirmBannerIframe` |             | `CustomEvent<string>` |
 | `handleOpenWelcomeModal`          |             | `CustomEvent<string>` |
 
-
 ## Dependencies
 
 ### Depends on
@@ -41,6 +38,7 @@
 - [nl-dialog](../nl-dialog)
 
 ### Graph
+
 ```mermaid
 graph TD;
   nl-banner --> nl-login-status
@@ -51,6 +49,6 @@ graph TD;
   style nl-banner fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
-----------------------------------------------
+---
 
-*Built with [StencilJS](https://stenciljs.com/)*
+_Built with [StencilJS](https://stenciljs.com/)_
